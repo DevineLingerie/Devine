@@ -21,7 +21,7 @@ export default async function HistoirePage() {
   return (
     <>
       <PageHero page={page} eyebrow="Notre histoire" variant="histoire" />
-      <Container className="py-16 sm:py-20">
+      <Container size="wide" className="py-20 sm:py-24">
         <ol className="relative grid gap-14 border-l border-bois pl-8 sm:pl-12">
           {etapes.map(({ label, section }) =>
             section ? (

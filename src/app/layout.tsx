@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Instrument_Sans } from "next/font/google";
+import { Hanken_Grotesk, Instrument_Serif } from "next/font/google";
 import { getSiteUrl } from "@/lib/env";
 import "./globals.css";
 
 // Polices sous licence SIL Open Font License (usage commercial autorisé),
 // auto-hébergées par next/font : aucune requête vers Google côté visiteur.
-const fraunces = Fraunces({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
+  weight: "400",
   style: ["normal", "italic"],
-  axes: ["SOFT", "opsz"],
-  variable: "--font-fraunces",
+  variable: "--font-instrument-serif",
   display: "swap",
 });
 
-const instrumentSans = Instrument_Sans({
+const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-instrument",
+  variable: "--font-hanken",
   display: "swap",
 });
 
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f2ea",
+  themeColor: "#fffcf8",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={`${fraunces.variable} ${instrumentSans.variable}`}>
+    <html lang="fr" className={`${instrumentSerif.variable} ${hanken.variable}`}>
       <body>{children}</body>
     </html>
   );

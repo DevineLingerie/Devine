@@ -19,8 +19,8 @@ export default async function NuitHomewearBainPage() {
       <Container size="wide" className="py-16 sm:py-20">
         <ul className="grid gap-6 md:grid-cols-3">
           {sections.map((section) => (
-            <li key={section.key} className="apparition rounded-3xl border border-nuit/10 bg-sable/50 p-6 sm:p-8">
-              <h2 className="text-2xl sm:text-3xl">{section.heading}</h2>
+            <li key={section.key} className="apparition rounded-[2rem] bg-sable p-7 sm:p-9">
+              <h2 className="text-4xl">{section.heading}</h2>
               <RichText text={section.body} className="mt-4 text-encre" />
             </li>
           ))}

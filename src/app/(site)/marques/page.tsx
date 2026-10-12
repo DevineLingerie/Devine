@@ -15,9 +15,9 @@ export default async function MarquesPage() {
   const [page, brands] = await Promise.all([requirePage("marques"), getBrands()]);
   return (
     <>
-      <Container className="py-14 sm:py-20">
-        <p className="mb-4 text-sm font-medium uppercase tracking-[0.18em] text-sauge">Sélection</p>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl">{page.heading}</h1>
+      <Container size="wide" className="py-14 sm:py-20">
+        <p className="surtitre mb-5 text-sauge">Sélection</p>
+        <h1 className="text-[3.2rem] leading-none sm:text-7xl lg:text-8xl">{page.heading}</h1>
         {page.intro ? <p className="mt-6 max-w-2xl text-lg text-encre sm:text-xl">{page.intro}</p> : null}
         <div className="mt-12">
           <BrandList brands={brands} detailed />

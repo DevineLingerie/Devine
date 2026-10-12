@@ -1,30 +1,36 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "light";
+type Variant = "primary" | "secondary" | "light" | "dark";
 
 const BASE =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-medium transition-colors duration-200 ease-doux disabled:cursor-not-allowed disabled:opacity-60";
+  "group/btn inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full px-7 py-3 text-[0.95rem] font-semibold tracking-wide transition-all duration-300 ease-doux disabled:cursor-not-allowed disabled:opacity-60";
 
 const VARIANTS: Record<Variant, string> = {
-  primary: "bg-argile text-lin hover:bg-argile-fonce",
-  secondary: "border border-nuit/70 text-nuit hover:border-nuit hover:bg-nuit hover:text-lin",
-  light: "border border-lin/70 text-lin hover:bg-lin hover:text-nuit",
+  primary: "bg-argile text-lin shadow-[0_8px_24px_-12px_rgba(107,45,92,0.7)] hover:bg-argile-fonce hover:-translate-y-0.5",
+  secondary: "border border-nuit/25 bg-lin/60 text-nuit hover:border-nuit hover:bg-lin",
+  light: "border border-lin/40 text-lin hover:bg-lin hover:text-nuit",
+  dark: "bg-nuit text-lin hover:bg-nuit-doux hover:-translate-y-0.5",
 };
 
 export function buttonClasses(variant: Variant = "primary", className = ""): string {
   return `${BASE} ${VARIANTS[variant]} ${className}`;
 }
 
-type ButtonLinkProps = { href: string; children: ReactNode; variant?: Variant; className?: string } & Omit<
+type ButtonLinkProps = { href: string; children: ReactNode; variant?: Variant; className?: string; arrow?: boolean } & Omit<
   ComponentProps<typeof Link>,
   "href" | "className" | "children"
 >;
 
-export function ButtonLink({ href, children, variant = "primary", className = "", ...rest }: ButtonLinkProps) {
+export function ButtonLink({ href, children, variant = "primary", className = "", arrow = false, ...rest }: ButtonLinkProps) {
   return (
     <Link href={href} className={buttonClasses(variant, className)} {...rest}>
       {children}
+      {arrow ? (
+        <span aria-hidden="true" className="transition-transform duration-300 group-hover/btn:translate-x-1">
+          →
+        </span>
+      ) : null}
     </Link>
   );
 }

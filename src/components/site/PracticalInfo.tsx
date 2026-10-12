@@ -13,7 +13,7 @@ export function PracticalInfo({ settings, tone = "light", headingLevel = 3 }: Pr
   const hours = formatOpeningHours(settings.openingHours);
   const directionsUrl = getDirectionsUrl(settings);
   const muted = tone === "dark" ? "text-lin/80" : "text-encre";
-  const headingClass = "font-serif text-xl";
+  const headingClass = tone === "dark" ? "surtitre text-argile-clair" : "surtitre text-sauge";
   const hasAnything = address.length > 0 || settings.phone || settings.email || hours.length > 0;
 
   if (!hasAnything) {
@@ -31,7 +31,7 @@ export function PracticalInfo({ settings, tone = "light", headingLevel = 3 }: Pr
         <div>
           <Heading className={headingClass}>La boutique</Heading>
           {address.length > 0 ? (
-            <address className={`mt-3 not-italic ${muted}`}>
+            <address className={`mt-4 not-italic text-lg ${tone === "dark" ? "text-lin" : "text-nuit"}`}>
               {address.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -39,7 +39,7 @@ export function PracticalInfo({ settings, tone = "light", headingLevel = 3 }: Pr
               ))}
             </address>
           ) : null}
-          <ul className="mt-3 grid gap-2">
+          <ul className="mt-4 grid gap-2">
             {settings.phone ? (
               <li>
                 <a href={toTelHref(settings.phone)} className="lien text-lg">
@@ -68,7 +68,7 @@ export function PracticalInfo({ settings, tone = "light", headingLevel = 3 }: Pr
       {hours.length > 0 ? (
         <div>
           <Heading className={headingClass}>Horaires</Heading>
-          <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5">
+          <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5">
             {hours.map((line) => (
               <div key={line.day} className="contents">
                 <dt className={muted}>{line.label}</dt>

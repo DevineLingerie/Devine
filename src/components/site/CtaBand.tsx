@@ -1,18 +1,18 @@
 import type { ReactNode } from "react";
-import { Trait } from "@/components/brand/Trait";
+import { Sceau } from "@/components/brand/Sceau";
 import { Container } from "@/components/ui/Container";
 
 type CtaBandProps = { title: string; text?: string; children: ReactNode };
 
-/** Bandeau d'appel à la visite, sur le ton sombre du plafond de la boutique. */
+/** Invitation à venir en boutique. */
 export function CtaBand({ title, text, children }: CtaBandProps) {
   return (
-    <section className="on-dark bg-nuit text-lin">
-      <Container size="narrow" className="py-16 text-center sm:py-20">
-        <Trait className="mx-auto mb-6 w-40 text-bois" />
-        <h2 className="text-3xl sm:text-4xl">{title}</h2>
-        {text ? <p className="mx-auto mt-4 max-w-xl text-lg text-lin/80">{text}</p> : null}
-        <div className="mt-8 flex flex-wrap justify-center gap-3">{children}</div>
+    <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <Container size="wide" className="tulle relative overflow-hidden rounded-[2.5rem] bg-nude px-6 py-14 text-center sm:px-12 sm:py-20">
+        <Sceau className="mx-auto mb-8 h-24 w-24" />
+        <h2 className="mx-auto max-w-3xl text-5xl sm:text-6xl">{title}</h2>
+        {text ? <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-nuit/80">{text}</p> : null}
+        <div className="mt-9 flex flex-wrap justify-center gap-3">{children}</div>
       </Container>
     </section>
   );

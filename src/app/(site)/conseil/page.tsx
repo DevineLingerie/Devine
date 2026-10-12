@@ -21,19 +21,19 @@ export default async function ConseilPage() {
   const deroulement = getSection(page, "deroulement");
   return (
     <>
-      <PageHero page={page} eyebrow="Conseil & expertise" variant="conseil">
+      <PageHero page={page} eyebrow="Conseil & expertise" variant="conseil" tone="sauge">
         <ButtonLink href="/contact">Préparer ma visite</ButtonLink>
       </PageHero>
 
-      <Container className="grid gap-16 py-16 sm:py-20 lg:grid-cols-2 lg:gap-x-16">
-        <TextSection section={getSection(page, "pourquoi")} />
-        <TextSection section={getSection(page, "taille")} />
+      <Container size="wide" className="grid gap-14 py-20 sm:py-24">
+        <TextSection section={getSection(page, "pourquoi")} layout="split" />
+        <TextSection section={getSection(page, "taille")} layout="split" />
       </Container>
 
       {deroulement ? (
         <section aria-labelledby="deroulement" className="bg-sauge-pale">
-          <Container className="py-16 sm:py-20">
-            <h2 id="deroulement" className="text-3xl sm:text-4xl">
+          <Container size="wide" className="py-20 sm:py-24">
+            <h2 id="deroulement" className="text-5xl sm:text-6xl">
               {deroulement.heading}
             </h2>
             <StepList text={deroulement.body} />
@@ -42,9 +42,9 @@ export default async function ConseilPage() {
       ) : null}
 
       {services.length > 0 ? (
-        <section aria-labelledby="services">
-          <Container className="py-16 sm:py-20">
-            <h2 id="services" className="text-3xl sm:text-4xl">
+        <section aria-labelledby="services" className="bg-sable">
+          <Container size="wide" className="py-20 sm:py-24">
+            <h2 id="services" className="text-5xl sm:text-6xl">
               Nos services
             </h2>
             <div className="mt-10">
@@ -54,14 +54,14 @@ export default async function ConseilPage() {
         </section>
       ) : null}
 
-      <Container size="narrow" className="pb-16 sm:pb-20">
-        <TextSection section={getSection(page, "approche")} />
+      <Container size="wide" className="pb-20 sm:pb-24">
+        <TextSection section={getSection(page, "approche")} layout="split" />
       </Container>
 
       {faqs.length > 0 ? (
-        <section aria-labelledby="questions" className="bg-sable/50">
+        <section aria-labelledby="questions" className="bg-sauge-pale">
           <Container size="narrow" className="py-16 sm:py-20">
-            <h2 id="questions" className="text-3xl sm:text-4xl">
+            <h2 id="questions" className="text-5xl sm:text-6xl">
               Questions fréquentes
             </h2>
             <div className="mt-8">
@@ -74,7 +74,7 @@ export default async function ConseilPage() {
 
       <CtaBand title="Prête ou prêt à essayer ?" text="Venez avec vos questions, on s'occupe du reste.">
         <ButtonLink href="/contact">Préparer ma visite</ButtonLink>
-        <ButtonLink href="/contact#formulaire" variant="light">
+        <ButtonLink href="/contact#formulaire" variant="secondary">
           Poser une question
         </ButtonLink>
       </CtaBand>

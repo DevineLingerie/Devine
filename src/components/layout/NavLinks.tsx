@@ -18,7 +18,7 @@ export function NavLinks({ items, className = "", linkClassName = "", onNavigate
               href={item.href}
               aria-current={isCurrent ? "page" : undefined}
               onClick={onNavigate}
-              className={`${linkClassName} ${isCurrent ? "underline decoration-argile decoration-2 underline-offset-8" : "hover:underline hover:decoration-1 hover:underline-offset-8"}`}
+              className={`${linkClassName} ${isCurrent ? "text-argile underline decoration-2 underline-offset-8" : "hover:text-argile"}`}
             >
               {item.label}
             </Link>

@@ -23,16 +23,16 @@ export default async function LingerieFemmePage() {
           Préparer ma visite
         </ButtonLink>
       </PageHero>
-      <Container className="grid gap-16 py-16 sm:py-20 lg:grid-cols-2 lg:gap-x-16">
-        <TextSection section={getSection(page, "selection")} />
-        <TextSection section={getSection(page, "tailles")} className="rounded-3xl bg-sauge-pale p-6 sm:p-8" />
-        <TextSection section={getSection(page, "coupe")} />
-        <TextSection section={getSection(page, "essayage")} />
+      <Container size="wide" className="grid gap-14 py-20 sm:py-24">
+        <TextSection section={getSection(page, "selection")} layout="split" />
+        <TextSection section={getSection(page, "tailles")} layout="split" />
+        <TextSection section={getSection(page, "coupe")} layout="split" />
+        <TextSection section={getSection(page, "essayage")} layout="split" />
       </Container>
       {complementaires.length > 0 ? (
-        <section aria-labelledby="aussi" className="bg-sable/50">
-          <Container className="py-16">
-            <h2 id="aussi" className="text-3xl">
+        <section aria-labelledby="aussi" className="border-t border-nuit/10">
+          <Container size="wide" className="py-20">
+            <h2 id="aussi" className="text-5xl">
               À découvrir aussi
             </h2>
             <div className="mt-8">
@@ -43,7 +43,7 @@ export default async function LingerieFemmePage() {
       ) : null}
       <CtaBand title="Venez essayer" text="Le plus sûr moyen de trouver la bonne taille, c'est d'essayer, avec quelqu'un qui sait regarder.">
         <ButtonLink href="/contact">Préparer ma visite</ButtonLink>
-        <ButtonLink href="/lingerie-homme" variant="light">
+        <ButtonLink href="/lingerie-homme" variant="secondary">
           Voir aussi l&apos;univers homme
         </ButtonLink>
       </CtaBand>
