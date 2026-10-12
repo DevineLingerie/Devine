@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/*
+ * DEVINE — système visuel
+ *
+ * Palette tirée de la boutique : bois clair des placards et du comptoir,
+ * plafond sombre, touche végétale, accent argile pour les actions.
+ * Contrastes vérifiés (WCAG AA) pour chaque couleur utilisée en texte :
+ *   nuit / lin 14,1:1 · encre / lin 7,3:1 · sauge / lin 6,3:1
+ *   argile / lin 5,3:1 · lin / argile 5,3:1 · argile-clair / nuit 6,3:1
+ * Les couleurs « bois » et « sauge-clair » sont décoratives sur fond clair.
+ */
+
+@theme {
+  --color-lin: #f7f2ea;
+  --color-sable: #ede3d3;
+  --color-bois: #c9a57e;
+  --color-bois-fonce: #7a5634;
+  --color-nuit: #1e2427;
+  --color-nuit-doux: #2a3236;
+  --color-encre: #4a5054;
+  --color-sauge: #4e5d48;
+  --color-sauge-clair: #a9b79e;
+  --color-sauge-pale: #dfe5d7;
+  --color-argile: #a44a2a;
+  --color-argile-fonce: #87391e;
+  --color-argile-clair: #e0916e;
+
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-arche: 999px 999px 1.5rem 1.5rem;
+
+  --ease-doux: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-lin);
+    color: var(--color-nuit);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-sauge-pale);
+    color: var(--color-nuit);
+  }
+
+  /* Focus visible et contrasté sur tous les éléments interactifs. */
+  :focus-visible {
+    outline: 3px solid var(--color-argile);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--color-argile-clair);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Lien éditorial souligné avec finesse. */
+  .lien {
+    color: var(--color-argile);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: text-decoration-thickness 150ms var(--ease-doux);
+  }
+  .lien:hover {
+    text-decoration-thickness: 2px;
+  }
+  .on-dark .lien {
+    color: var(--color-argile-clair);
+  }
+
+  /* Texte riche issu de l'administration. */
+  .prose-devine > * + * {
+    margin-top: 1rem;
+  }
+  .prose-devine ul {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .prose-devine li {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .prose-devine li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.75rem;
+    height: 1px;
+    background-color: currentColor;
+    opacity: 0.6;
+  }
+}
+
+/* Apparition douce au défilement, désactivée si l'utilisateur réduit les animations. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .apparition {
+      animation: apparition linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+@keyframes apparition {
+  /* Jamais totalement invisible : le contenu reste lisible même sans défilement. */
+  from {
+    opacity: 0.55;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
