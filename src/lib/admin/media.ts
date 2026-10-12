@@ -24,7 +24,8 @@ export function detectImageType(bytes: Uint8Array): ImageType | null {
 
 /** Nom de fichier propre : minuscules, sans accents ni espaces. */
 export function slugifyFileName(name: string): string {
-  const base = name.replace(/\.[^.]*$/, "");
+  const fileName = name.split(/[\\/]/).pop() ?? "";
+  const base = fileName.replace(/\.[^.]*$/, "");
   const slug = base
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")

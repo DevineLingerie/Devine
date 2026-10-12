@@ -57,7 +57,11 @@ export function parseSettingsForm(formData: FormData): SettingsFormResult {
       if (!opens && !closes) continue;
       if (!opens) fieldErrors[`hours.${day}.${index}.opens`] = "Heure d'ouverture manquante.";
       if (!closes) fieldErrors[`hours.${day}.${index}.closes`] = "Heure de fermeture manquante.";
-      if (opens && closes) periods.push({ opens, closes });
+      if (opens && closes && opens >= closes) {
+        fieldErrors[`hours.${day}.${index}.closes`] = "L'heure de fermeture doit suivre l'heure d'ouverture.";
+      } else if (opens && closes) {
+        periods.push({ opens, closes });
+      }
     }
     openingHours.push({ day, periods });
   }
@@ -82,9 +86,10 @@ export function parseSettingsForm(formData: FormData): SettingsFormResult {
     Object.assign(
       fieldErrors,
       zodFieldErrors(parsed.error, (path) => {
-        // openingHours.2.periods.0 → hours.wednesday.0.closes ; socialLinks.1.url → social.<réseau>
-        const hours = path.match(/^openingHours\.(\d+)\.periods\.(\d+)/);
-        if (hours) return `hours.${WEEK_DAYS[Number(hours[1])]}.${hours[2]}.closes`;
+        // Format d'heure invalide : rattaché au jour (le créneau exact est déjà vérifié plus haut).
+        const hours = path.match(/^openingHours\.(\d+)/);
+        if (hours) return `hours.${WEEK_DAYS[Number(hours[1])]}.0.opens`;
+        // socialLinks.1.url → social.<réseau>
         const social = path.match(/^socialLinks\.(\d+)/);
         if (social) return `social.${socialLinks[Number(social[1])]?.network ?? "instagram"}`;
         return path;

@@ -1,6 +1,7 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { createSessionClient } from "@/lib/supabase/server";
 import type { Database } from "@/lib/supabase/database.types";
 
@@ -18,6 +19,8 @@ export type AdminCheck =
  * puis l'appartenance à admin_users est lue avec les droits de l'utilisateur.
  */
 export async function checkAdmin(): Promise<AdminCheck> {
+  // Toujours évalué à la requête, jamais au moment du build.
+  await connection();
   const supabase = await createSessionClient();
   if (!supabase) return { status: "unconfigured" };
 

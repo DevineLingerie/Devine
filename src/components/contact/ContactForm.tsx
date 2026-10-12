@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { submitContactRequest } from "@/app/(site)/contact/actions";
 import { Button } from "@/components/ui/Button";
 import { CONTACT_SUBJECTS, type ContactFormState } from "@/lib/validation/contact";
@@ -22,13 +22,8 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 
 export function ContactForm({ enabled }: { enabled: boolean }) {
   const [state, formAction, pending] = useActionState(submitContactRequest, initialState);
-  const [startedAt, setStartedAt] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setStartedAt(String(Date.now()));
-  }, []);
 
   useEffect(() => {
     if (state.status === "success") formRef.current?.reset();
@@ -166,7 +161,14 @@ export function ContactForm({ enabled }: { enabled: boolean }) {
         <label htmlFor="contact-website">Ne pas remplir ce champ</label>
         <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
-      <input type="hidden" name="startedAt" value={startedAt} />
+      <input
+        type="hidden"
+        name="startedAt"
+        ref={(input) => {
+          // Horodatage posé au montage dans le navigateur (délai minimal anti-robot).
+          if (input && !input.value) input.value = String(Date.now());
+        }}
+      />
 
       <div>
         <div className="flex items-start gap-3">

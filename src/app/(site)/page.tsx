@@ -188,7 +188,7 @@ export default async function HomePage() {
       {histoire ? (
         <section aria-labelledby="histoire">
           <Container className="grid items-center gap-8 py-16 sm:py-20 md:grid-cols-[auto_1fr] md:gap-16">
-            <p aria-hidden="true" className="font-serif text-7xl leading-none text-bois sm:text-8xl lg:text-9xl">
+            <p aria-hidden="true" className="font-serif text-7xl leading-none text-bois-fonce sm:text-8xl lg:text-9xl">
               1912
             </p>
             <div className="apparition">

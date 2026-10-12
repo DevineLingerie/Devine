@@ -1,0 +1,44 @@
+name: Contrôles
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: TypeScript
+        run: npm run typecheck
+
+      - name: Tests unitaires
+        run: npm test
+
+      - name: Migrations et permissions (PostgreSQL)
+        run: npm run test:db
+
+      - name: Build de production
+        run: npm run build
+
+      - name: Navigateur Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Tests de bout en bout et accessibilité
+        run: npm run test:e2e
