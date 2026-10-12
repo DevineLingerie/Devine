@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireAdmin } from "@/lib/auth/admin";
 import { errorState, text, type AdminFormState } from "@/lib/admin/form-state";
+import { getSiteUrl } from "@/lib/env";
 import { createSessionClient } from "@/lib/supabase/server";
 
 const loginSchema = z.object({
@@ -63,4 +64,17 @@ export async function changePassword(_previous: AdminFormState, formData: FormDa
   const { error } = await supabase.auth.updateUser({ password: parsed.data.password });
   if (error) return errorState(formData, "Le mot de passe n'a pas pu être modifié. Choisissez-en un autre.");
   return { status: "success", message: "Mot de passe modifié." };
+}
+
+export async function requestPasswordReset(_previous: AdminFormState, formData: FormData): Promise<AdminFormState> {
+  const supabase = await createSessionClient();
+  if (!supabase) return errorState(formData, "Supabase n'est pas encore configuré pour ce site.");
+  const email = z.email().safeParse(text(formData, "email").trim());
+  if (!email.success) return errorState(formData, "Adresse e-mail invalide.", { email: "Adresse e-mail invalide." });
+  await supabase.auth.resetPasswordForEmail(email.data, { redirectTo: `${getSiteUrl()}/admin/auth/confirm` });
+  // Même réponse que le compte existe ou non.
+  return {
+    status: "success",
+    message: "Si cette adresse correspond à un compte, un e-mail de réinitialisation vient d'être envoyé.",
+  };
 }

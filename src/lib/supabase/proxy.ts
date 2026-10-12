@@ -27,7 +27,8 @@ export async function updateAdminSession(request: NextRequest): Promise<NextResp
   });
 
   const { data } = await supabase.auth.getClaims();
-  const isLoginPage = request.nextUrl.pathname === "/admin/connexion";
+  const publicPaths = ["/admin/connexion", "/admin/auth/confirm"];
+  const isLoginPage = publicPaths.includes(request.nextUrl.pathname);
 
   if (!data?.claims && !isLoginPage) {
     const url = request.nextUrl.clone();

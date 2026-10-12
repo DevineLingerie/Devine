@@ -4,7 +4,7 @@ import { AdminForm } from "@/components/admin/AdminForm";
 import { TextField } from "@/components/admin/fields";
 import { Logo } from "@/components/brand/Logo";
 import { checkAdmin } from "@/lib/auth/admin";
-import { signIn, signOut } from "../_actions/auth";
+import { requestPasswordReset, signIn, signOut } from "../_actions/auth";
 
 export const metadata: Metadata = { title: "Connexion" };
 
@@ -38,6 +38,11 @@ export default async function LoginPage({ searchParams }: PageProps<"/admin/conn
         </div>
       ) : (
         <>
+          {params.erreur === "lien" ? (
+            <p className="mt-4 text-argile-fonce" role="alert">
+              Ce lien n&apos;est plus valable. Demandez-en un nouveau ci-dessous.
+            </p>
+          ) : null}
           {params.erreur === "acces" ? (
             <p className="mt-4 text-argile-fonce" role="alert">
               Ce compte n&apos;a pas accès à l&apos;administration.
@@ -49,9 +54,14 @@ export default async function LoginPage({ searchParams }: PageProps<"/admin/conn
               <TextField name="password" label="Mot de passe" type="password" autoComplete="current-password" required />
             </AdminForm>
           </div>
-          <p className="mt-6 text-sm text-encre">
-            Mot de passe oublié ? Il peut être réinitialisé depuis le tableau de bord Supabase (voir la documentation).
-          </p>
+          <details className="mt-8 rounded-xl border border-nuit/10 p-4">
+            <summary className="cursor-pointer font-medium">Mot de passe oublié ?</summary>
+            <div className="mt-4">
+              <AdminForm action={requestPasswordReset} submitLabel="Recevoir un lien">
+                <TextField name="email" label="E-mail du compte" type="email" autoComplete="username" required />
+              </AdminForm>
+            </div>
+          </details>
         </>
       )}
     </main>
