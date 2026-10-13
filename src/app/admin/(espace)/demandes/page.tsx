@@ -76,7 +76,7 @@ export default async function ContactRequestsPage({ searchParams }: PageProps<"/
             <li key={item.id} className="rounded-2xl border border-nuit/10 bg-white/50 p-5 sm:p-6">
               <article aria-labelledby={`demande-${item.id}`}>
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h2 id={`demande-${item.id}`} className="font-serif text-2xl">
+                  <h2 id={`demande-${item.id}`} className="font-display text-2xl">
                     {item.name || "Sans nom"} — {CONTACT_SUBJECTS[item.subject]}
                   </h2>
                   <p className="text-sm text-encre">

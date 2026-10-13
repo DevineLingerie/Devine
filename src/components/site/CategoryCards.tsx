@@ -15,7 +15,7 @@ export function CategoryCards({ categories, headingLevel = 3 }: { categories: Ca
         const content = (
           <>
             <p className="surtitre text-sauge">{AUDIENCE_LABELS[category.audience]}</p>
-            <Heading className="mt-3 font-serif text-3xl">{category.name}</Heading>
+            <Heading className="mt-3 font-display text-3xl">{category.name}</Heading>
             {category.summary ? <p className="mt-3 text-[0.95rem] leading-relaxed text-encre">{category.summary}</p> : null}
             {category.linkPath ? (
               <span aria-hidden="true" className="mt-auto pt-6 text-sm font-semibold text-argile transition-transform duration-300 group-hover:translate-x-1">

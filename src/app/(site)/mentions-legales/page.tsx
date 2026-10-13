@@ -24,7 +24,7 @@ export default async function MentionsLegalesPage() {
   const shopAddress = formatAddressLines(settings).join(", ") || null;
   return (
     <Container size="narrow" className="py-14 sm:py-20">
-      <h1 className="text-[3.2rem] leading-none sm:text-7xl">{page.heading}</h1>
+      <h1 className="text-5xl leading-none sm:text-6xl">{page.heading}</h1>
       {page.intro ? <p className="mt-6 text-lg text-encre">{page.intro}</p> : null}
 
       <section aria-labelledby="editeur" className="mt-12">

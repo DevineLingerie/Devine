@@ -60,7 +60,7 @@ export function MobileMenu({ items }: { items: NavItem[] }) {
           <NavLinks
             items={items}
             className="grid gap-1 border-t border-nuit/10"
-            linkClassName="block border-b border-nuit/10 py-4 font-serif text-3xl"
+            linkClassName="block border-b border-nuit/10 py-4 font-display text-3xl"
             onNavigate={() => setOpen(false)}
           />
         </nav>

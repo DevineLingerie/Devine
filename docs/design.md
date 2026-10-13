@@ -10,13 +10,13 @@ Toutes les couleurs sont définies une seule fois dans `src/app/globals.css` (`@
 
 | Nom (jeton) | Valeur | Rôle |
 | --- | --- | --- |
-| Lin (`lin`) | `#fffcf8` | fond général |
-| Sable (`sable`) | `#f6e8dd` | grands aplats chaleureux, en-têtes de page |
+| Lin (`lin`) | `#ffffff` | fond général |
+| Sable (`sable`) | `#f8eee7` | grands aplats chaleureux, en-têtes de page |
 | Nude (`nude`) | `#ecd3c3` | ton peau et tissu : bandeau d'invitation, sélection de texte |
 | Bois (`bois`, `bois-fonce`) | `#c99d6e`, `#7a5532` | bois blond des placards : détails, chiffres |
 | Sauge (`sauge`, `sauge-pale`) | `#3d5845`, `#e5eee7` | touche végétale : sur-titres, bandeau du haut, univers homme |
-| Prune (`argile`) | `#6b2d5c` | couleur d'action : boutons, liens, focus |
-| Nuit (`nuit`) | `#1a1f22` | texte et plafond : pied de page |
+| Prune (`argile`) | `#6b2d5c` | accent : liens, mots en italique, focus, survol des boutons |
+| Nuit (`nuit`) | `#1a1f22` | texte, boutons principaux, pied de page |
 
 Contrastes vérifiés (WCAG AA) : nuit/lin 16,3:1 · encre/lin 7,1:1 · sauge/lin 7,7:1 · prune/lin 9,5:1 · bois foncé/lin 6,5:1. Le contrôle axe-core des tests de bout en bout le vérifie à chaque build.
 
@@ -24,8 +24,8 @@ Si une charte graphique validée arrive, il suffit de remplacer ces valeurs : au
 
 ## Typographie
 
-- **Instrument Serif** (titres) : serif fine et élégante, très lisible en grand ; l'italique apporte la touche complice (citation, sceau, noms de marques).
-- **Hanken Grotesk** (texte, boutons, formulaires) : sans-serif claire et chaleureuse.
+- **Hanken Grotesk** (titres en gras, texte, boutons, formulaires) : sans-serif franche, moderne et accessible, dans l'esprit des marques de lingerie « bien dans son corps ».
+- **Instrument Serif** italique : uniquement pour les touches éditoriales (fin du titre d'accueil, mot mis en valeur avec `<em>`, citation, « 1912 », sceau, noms de marques).
 
 Les deux polices sont sous licence SIL Open Font License (usage commercial libre) et auto-hébergées par `next/font` : aucune requête vers Google côté visiteur.
 
@@ -34,7 +34,9 @@ Les deux polices sont sous licence SIL Open Font License (usage commercial libre
 - **Vitrine** (`src/components/brand/Vitrine.tsx`) : illustration originale, non photographique. La boutique vue comme une vitrine en arche : plafond sombre, rail d'éclairage et ses faisceaux, comptoir courbe en bois, trame de tulle. Elle tient la place des photos ; une photo ajoutée dans l'administration la remplace dans le même cadre en arche.
 - **Sceau** (`Sceau.tsx`) : médaillon circulaire « Lingerie · depuis 1912 · femme & homme ».
 - **Trame de tulle** (classe `.tulle`) : texture hexagonale très légère, propre à la lingerie, sur les grands aplats.
-- **Logotype provisoire** : « DEVINE » en capitales espacées, signature en petites capitales.
+- **Logotype provisoire** : « devine. » en minuscules grasses avec un point prune, signature en petites capitales.
+- **Outil « Trouvez votre taille »** (`components/site/SizeFinder.tsx`, calcul dans `lib/sizing.ts`) : estimation indicative à partir de deux mesures, calculée dans le navigateur, sans envoi de données.
+- **Icônes** (`components/ui/Icon.tsx`) : dessinées pour le site, au trait.
 - **Animations** : une simple apparition au défilement, uniquement si le navigateur la gère et si l'utilisateur n'a pas demandé à réduire les animations. Le contenu reste lisible à tout moment.
 
 ## Composants

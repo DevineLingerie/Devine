@@ -51,8 +51,8 @@ export async function SiteFooter() {
       </Container>
       <Container size="wide">
         <svg aria-hidden="true" focusable="false" viewBox="0 0 1000 170" className="block w-full select-none">
-          <text x="500" y="150" textAnchor="middle" fontSize="190" letterSpacing="22" fill="#fffcf8" fillOpacity="0.07" style={{ fontFamily: "var(--font-serif)" }}>
-            DEVINE
+          <text x="500" y="140" textAnchor="middle" fontSize="230" letterSpacing="-8" fontWeight="700" fill="#ffffff" fillOpacity="0.07" style={{ fontFamily: "var(--font-display)" }}>
+            devine.
           </text>
         </svg>
       </Container>

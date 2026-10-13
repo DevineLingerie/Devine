@@ -2,6 +2,7 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { FaqList } from "@/components/site/FaqList";
 import { PageHero } from "@/components/site/PageHero";
 import { ServiceList } from "@/components/site/ServiceList";
+import { SizeFinder } from "@/components/site/SizeFinder";
 import { TextSection } from "@/components/site/TextSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/Button";
@@ -30,10 +31,27 @@ export default async function ConseilPage() {
         <TextSection section={getSection(page, "taille")} layout="split" />
       </Container>
 
+      <section id="taille" aria-labelledby="taille-titre" className="scroll-mt-28 px-3 pb-20 sm:px-5 sm:pb-24">
+        <div className="mx-auto max-w-[96rem] rounded-[2rem] bg-sable sm:rounded-[2.75rem]">
+          <Container size="wide" className="py-14 sm:py-16">
+            <p className="surtitre text-sauge">Guide des tailles</p>
+            <h2 id="taille-titre" className="mt-4 text-4xl sm:text-5xl">
+              Trouvez <em>votre</em> taille
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-encre">
+              Une première estimation pour savoir par où commencer. En boutique, on la vérifie en essayant.
+            </p>
+            <div className="mt-10">
+              <SizeFinder />
+            </div>
+          </Container>
+        </div>
+      </section>
+
       {deroulement ? (
         <section aria-labelledby="deroulement" className="bg-sauge-pale">
           <Container size="wide" className="py-20 sm:py-24">
-            <h2 id="deroulement" className="text-5xl sm:text-6xl">
+            <h2 id="deroulement" className="text-4xl sm:text-5xl">
               {deroulement.heading}
             </h2>
             <StepList text={deroulement.body} />
@@ -44,7 +62,7 @@ export default async function ConseilPage() {
       {services.length > 0 ? (
         <section aria-labelledby="services" className="bg-sable">
           <Container size="wide" className="py-20 sm:py-24">
-            <h2 id="services" className="text-5xl sm:text-6xl">
+            <h2 id="services" className="text-4xl sm:text-5xl">
               Nos services
             </h2>
             <div className="mt-10">
@@ -61,7 +79,7 @@ export default async function ConseilPage() {
       {faqs.length > 0 ? (
         <section aria-labelledby="questions" className="bg-sauge-pale">
           <Container size="narrow" className="py-16 sm:py-20">
-            <h2 id="questions" className="text-5xl sm:text-6xl">
+            <h2 id="questions" className="text-4xl sm:text-5xl">
               Questions fréquentes
             </h2>
             <div className="mt-8">

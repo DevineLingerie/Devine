@@ -22,7 +22,7 @@ const NETWORK_LABELS: Record<(typeof SOCIAL_NETWORKS)[number], string> = {
 function Fieldset({ legend, description, children }: { legend: string; description?: string; children: React.ReactNode }) {
   return (
     <fieldset className="grid gap-5 rounded-2xl border border-nuit/10 bg-white/40 p-5 sm:p-6">
-      <legend className="px-1 font-serif text-2xl">{legend}</legend>
+      <legend className="px-1 font-display text-2xl">{legend}</legend>
       {description ? <p className="-mt-2 text-encre">{description}</p> : null}
       {children}
     </fieldset>

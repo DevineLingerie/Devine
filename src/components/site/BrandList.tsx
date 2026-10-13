@@ -9,7 +9,7 @@ export function BrandList({ brands, detailed = false }: { brands: Brand[]; detai
   }
   if (!detailed) {
     return (
-      <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 font-serif text-3xl sm:gap-x-6 sm:text-5xl">
+      <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 font-display text-3xl sm:gap-x-6 sm:text-5xl">
         {brands.map((brand, index) => (
           <li key={brand.id} className="flex items-center gap-4 sm:gap-6">
             {index > 0 ? (
@@ -38,7 +38,7 @@ export function BrandList({ brands, detailed = false }: { brands: Brand[]; detai
                 className="mb-4 h-12 w-auto object-contain"
               />
             ) : null}
-            <h2 className="font-serif text-4xl">{brand.name}</h2>
+            <h2 className="font-display text-4xl">{brand.name}</h2>
             {brand.description ? <p className="mt-2 text-encre">{brand.description}</p> : null}
             {brand.websiteUrl ? (
               <a href={brand.websiteUrl} className="lien mt-3 inline-block" target="_blank" rel="noopener noreferrer">

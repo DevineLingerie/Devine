@@ -27,7 +27,7 @@ export default async function HistoirePage() {
             section ? (
               <li key={section.key} className="relative">
                 <span aria-hidden="true" className="absolute -left-[2.45rem] top-2 h-3 w-3 rounded-full bg-argile sm:-left-[3.45rem]" />
-                <p className="font-serif text-lg italic text-bois-fonce">{label}</p>
+                <p className="font-serif text-xl italic text-bois-fonce">{label}</p>
                 <TextSection section={section} className="mt-2 max-w-2xl" />
               </li>
             ) : null,

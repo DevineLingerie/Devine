@@ -44,7 +44,7 @@ export default async function AdminPageEdit({ params }: PageProps<"/admin/pages/
         <AdminForm action={savePage}>
           <input type="hidden" name="slug" value={page.slug} />
           <fieldset className="grid gap-5 rounded-2xl border border-nuit/10 bg-white/40 p-5 sm:p-6">
-            <legend className="px-1 font-serif text-2xl">En-tête</legend>
+            <legend className="px-1 font-display text-2xl">En-tête</legend>
             <TextField name="heading" label="Titre principal (H1)" required defaultValue={page.heading} maxLength={120} />
             <TextArea name="intro" label="Introduction" defaultValue={page.intro ?? ""} maxLength={600} rows={3} />
             <SelectField name="heroImageId" label="Image principale" defaultValue={page.hero_image_id ?? ""} options={mediaOptions} hint="Ajoutez d'abord l'image dans « Images »." />
@@ -52,14 +52,14 @@ export default async function AdminPageEdit({ params }: PageProps<"/admin/pages/
 
           {sections.map((section) => (
             <fieldset key={section.key} className="grid gap-5 rounded-2xl border border-nuit/10 bg-white/40 p-5 sm:p-6">
-              <legend className="px-1 font-serif text-2xl">Section « {section.heading} »</legend>
+              <legend className="px-1 font-display text-2xl">Section « {section.heading} »</legend>
               <TextField name={`sections.${section.key}.heading`} label="Titre de la section" required defaultValue={section.heading} maxLength={120} />
               <TextArea name={`sections.${section.key}.body`} label="Texte" defaultValue={section.body} maxLength={3000} rows={6} />
             </fieldset>
           ))}
 
           <fieldset className="grid gap-5 rounded-2xl border border-nuit/10 bg-white/40 p-5 sm:p-6">
-            <legend className="px-1 font-serif text-2xl">Référencement</legend>
+            <legend className="px-1 font-display text-2xl">Référencement</legend>
             <TextField name="title" label="Titre pour les moteurs de recherche (70 caractères max.)" required defaultValue={page.title} maxLength={70} />
             <TextArea name="description" label="Description pour les moteurs de recherche (170 caractères max.)" required defaultValue={page.description} maxLength={170} rows={2} />
             <CheckboxField name="isPublished" label="Page publiée" defaultChecked={page.is_published} hint="Une page non publiée affiche « page introuvable » aux visiteurs." />

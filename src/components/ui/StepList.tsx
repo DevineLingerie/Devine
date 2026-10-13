@@ -19,7 +19,7 @@ export function StepList({ text }: { text: string }) {
         <ol className={`mt-10 grid gap-4 sm:grid-cols-2 ${COLUMNS[steps.length] ?? "lg:grid-cols-3"}`}>
           {steps.map((step, index) => (
             <li key={index} className="flex flex-col gap-4 rounded-[1.75rem] bg-lin p-6">
-              <span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-full bg-argile font-serif text-2xl text-lin">
+              <span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-full bg-argile font-display text-2xl text-lin">
                 {index + 1}
               </span>
               <span className="text-lg">{step}</span>

@@ -17,7 +17,7 @@ export default async function MarquesPage() {
     <>
       <Container size="wide" className="py-14 sm:py-20">
         <p className="surtitre mb-5 text-sauge">Sélection</p>
-        <h1 className="text-[3.2rem] leading-none sm:text-7xl lg:text-8xl">{page.heading}</h1>
+        <h1 className="text-5xl leading-none sm:text-6xl lg:text-7xl">{page.heading}</h1>
         {page.intro ? <p className="mt-6 max-w-2xl text-lg text-encre sm:text-xl">{page.intro}</p> : null}
         <div className="mt-12">
           <BrandList brands={brands} detailed />

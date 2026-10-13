@@ -13,7 +13,7 @@ export function Sceau({ label = "Lingerie · depuis 1912 · femme & homme ·", c
       <text fontSize="9.4" letterSpacing="2.1" fill="var(--color-nuit)" style={{ fontFamily: "var(--font-sans)", textTransform: "uppercase", fontWeight: 600 }}>
         <textPath href={`#${id}-cercle`}>{label}</textPath>
       </text>
-      <text x="60" y="73" textAnchor="middle" fontSize="38" fill="var(--color-argile)" style={{ fontFamily: "var(--font-serif)", fontStyle: "italic" }}>
+      <text x="60" y="73" textAnchor="middle" fontSize="38" fill="var(--color-argile)" style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}>
         D
       </text>
     </svg>

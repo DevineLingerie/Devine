@@ -32,7 +32,7 @@ export default async function LingerieFemmePage() {
       {complementaires.length > 0 ? (
         <section aria-labelledby="aussi" className="border-t border-nuit/10">
           <Container size="wide" className="py-20">
-            <h2 id="aussi" className="text-5xl">
+            <h2 id="aussi" className="text-4xl">
               À découvrir aussi
             </h2>
             <div className="mt-8">

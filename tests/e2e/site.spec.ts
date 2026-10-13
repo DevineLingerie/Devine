@@ -136,3 +136,14 @@ test("questions fréquentes dépliables au clavier", async ({ page }) => {
   await question.click();
   await expect(page.getByText(/La taille indiquée sur une étiquette/)).toBeVisible();
 });
+
+test("l'outil « Trouvez votre taille » donne une estimation", async ({ page }) => {
+  await page.goto("/#taille");
+  await page.getByLabel("Tour de dessous de poitrine").fill("75");
+  await page.getByLabel("Tour de poitrine").fill("94");
+  await page.getByRole("button", { name: "Estimer ma taille" }).click();
+  await expect(page.getByText("90 D", { exact: true })).toBeVisible();
+  await page.getByLabel("Tour de poitrine").fill("70");
+  await page.getByRole("button", { name: "Estimer ma taille" }).click();
+  await expect(page.getByText(/doit être plus grand/)).toBeVisible();
+});

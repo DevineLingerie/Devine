@@ -25,11 +25,11 @@ export default async function AdminDashboard() {
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <Link href="/admin/demandes" className="rounded-2xl border border-nuit/10 bg-sable/60 p-6 hover:border-nuit/30">
-          <p className="font-serif text-4xl">{newRequests ?? 0}</p>
+          <p className="font-display text-4xl">{newRequests ?? 0}</p>
           <p className="mt-1 text-encre">nouvelle{(newRequests ?? 0) > 1 ? "s" : ""} demande{(newRequests ?? 0) > 1 ? "s" : ""} de contact</p>
         </Link>
         <Link href="/admin/medias" className="rounded-2xl border border-nuit/10 bg-sable/60 p-6 hover:border-nuit/30">
-          <p className="font-serif text-4xl">{imageCount ?? 0}</p>
+          <p className="font-display text-4xl">{imageCount ?? 0}</p>
           <p className="mt-1 text-encre">image{(imageCount ?? 0) > 1 ? "s" : ""} dans la photothèque</p>
         </Link>
       </div>
