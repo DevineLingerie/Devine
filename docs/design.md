@@ -31,6 +31,8 @@ Les deux polices sont sous licence SIL Open Font License (usage commercial libre
 
 ## Éléments graphiques
 
+- **Mot-symbole** : « devine. » en très grand en tête de l'accueil, l'élément mémorable de la page ; tout le reste reste sobre (pas de capitales espacées, pas de flèches décoratives).
+- **Cadres photo** (`components/site/PhotoFrame.tsx`) : affichent, par ordre de priorité, la photo ajoutée dans l'administration, une photo d'illustration provisoire déclarée dans `src/content/photos.ts` (avec crédit, affiché dans les mentions légales), sinon l'illustration Vitrine.
 - **Vitrine** (`src/components/brand/Vitrine.tsx`) : illustration originale, non photographique. La boutique vue comme une vitrine en arche : plafond sombre, rail d'éclairage et ses faisceaux, comptoir courbe en bois, trame de tulle. Elle tient la place des photos ; une photo ajoutée dans l'administration la remplace dans le même cadre en arche.
 - **Sceau** (`Sceau.tsx`) : médaillon circulaire « Lingerie · depuis 1912 · femme & homme ».
 - **Trame de tulle** (classe `.tulle`) : texture hexagonale très légère, propre à la lingerie, sur les grands aplats.

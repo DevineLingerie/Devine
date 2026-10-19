@@ -23,7 +23,7 @@ export function SiteHeader() {
             <Logo tagline="Lingerie depuis 1912" />
           </Link>
           <nav aria-label="Navigation principale" className="hidden lg:block">
-            <NavLinks items={mainNavigation} className="flex items-center gap-7 text-[0.82rem] font-semibold uppercase tracking-[0.12em]" linkClassName="py-2" />
+            <NavLinks items={mainNavigation} className="flex items-center gap-8 text-[0.98rem] font-semibold" linkClassName="py-2" />
           </nav>
           <div className="hidden lg:block">
             <ButtonLink href={contactNavItem.href} className="min-h-11 px-5">

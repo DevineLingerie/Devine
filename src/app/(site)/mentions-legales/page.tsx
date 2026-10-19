@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { formatAddressLines } from "@/lib/content/format";
 import { getPageMetadata, requirePage } from "@/lib/content/page-loader";
 import { getSiteSettings } from "@/lib/content/repository";
+import { stockPhotos } from "@/content/photos";
 
 export function generateMetadata() {
   return getPageMetadata("mentions-legales", "/mentions-legales");
@@ -56,6 +57,25 @@ export default async function MentionsLegalesPage() {
           <Item label="Contact" value={settings.hostContact} />
         </dl>
       </section>
+
+      {Object.keys(stockPhotos).length > 0 ? (
+        <section aria-labelledby="credits-photos" className="mt-12">
+          <h2 id="credits-photos" className="text-4xl">
+            Crédits photos
+          </h2>
+          <p className="mt-4 text-encre">Photos d&apos;illustration provisoires, en attendant les photos de la boutique :</p>
+          <ul className="mt-4 grid gap-2">
+            {Object.values(stockPhotos).map((photo) => (
+              <li key={photo.src}>
+                {photo.alt} — {photo.author},{" "}
+                <a href={photo.url} className="lien" target="_blank" rel="noopener noreferrer">
+                  {photo.source}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {page.sections.map((section) => (
         <TextSection key={section.key} section={section} className="mt-12" />

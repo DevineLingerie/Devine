@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Vitrine, type VitrineVariant } from "@/components/brand/Vitrine";
+import type { VitrineVariant } from "@/components/brand/Vitrine";
+import { PHOTO_SLOTS, type PhotoSlot } from "@/content/photos";
+import { PhotoFrame } from "./PhotoFrame";
 import type { Category } from "@/content/types";
-import { getImageUrl } from "@/lib/content/format";
 
 const VARIANTS: Record<string, VitrineVariant> = {
   "lingerie-femme": "femme",
@@ -29,15 +29,15 @@ export function UniverseGrid({ categories }: { categories: Category[] }) {
     <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
       {sorted.map((category) => {
         const isFeatured = featured.includes(category.slug);
-        const imageUrl = category.image ? getImageUrl(category.image.path) : null;
+        const slot = (PHOTO_SLOTS as readonly string[]).includes(category.slug) ? (category.slug as PhotoSlot) : undefined;
         const visual = (
-          <span className={`relative block overflow-hidden rounded-[1.5rem] ${isFeatured ? "aspect-[4/5] sm:aspect-[5/4]" : "aspect-square"}`}>
-            {category.image && imageUrl ? (
-              <Image src={imageUrl} alt={category.image.alt} fill sizes="(min-width: 1024px) 50vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-            ) : (
-              <Vitrine variant={VARIANTS[category.slug] ?? "accueil"} className="h-full w-full transition-transform duration-700 group-hover:scale-105" />
-            )}
-          </span>
+          <PhotoFrame
+            media={category.image}
+            slot={slot}
+            variant={VARIANTS[category.slug] ?? "accueil"}
+            sizes={isFeatured ? "(min-width: 1024px) 45vw, 90vw" : "(min-width: 1024px) 22vw, 45vw"}
+            className={`rounded-[1.5rem] transition-transform duration-500 group-hover:-translate-y-1 ${isFeatured ? "aspect-[4/5] sm:aspect-[5/4]" : "aspect-square"}`}
+          />
         );
         const label = (
           <span className="mt-4 block">
@@ -46,11 +46,8 @@ export function UniverseGrid({ categories }: { categories: Category[] }) {
             </span>
             {category.summary && isFeatured ? <span className="mt-2 hidden max-w-md text-encre sm:block">{category.summary}</span> : null}
             {category.linkPath ? (
-              <span className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-argile sm:text-base">
-                {LINK_LABELS[category.slug] ?? "Découvrir"}
-                <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
+              <span className="mt-2 inline-block text-sm font-bold text-argile underline decoration-argile/30 underline-offset-4 group-hover:decoration-argile sm:text-base">
+                {LINK_LABELS[category.slug] ?? `Découvrir : ${category.name.toLowerCase()}`}
               </span>
             ) : (
               <span className="mt-1 block text-sm text-encre">En boutique</span>

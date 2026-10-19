@@ -17,20 +17,15 @@ export function buttonClasses(variant: Variant = "primary", className = ""): str
   return `${BASE} ${VARIANTS[variant]} ${className}`;
 }
 
-type ButtonLinkProps = { href: string; children: ReactNode; variant?: Variant; className?: string; arrow?: boolean } & Omit<
+type ButtonLinkProps = { href: string; children: ReactNode; variant?: Variant; className?: string } & Omit<
   ComponentProps<typeof Link>,
   "href" | "className" | "children"
 >;
 
-export function ButtonLink({ href, children, variant = "primary", className = "", arrow = false, ...rest }: ButtonLinkProps) {
+export function ButtonLink({ href, children, variant = "primary", className = "", ...rest }: ButtonLinkProps) {
   return (
     <Link href={href} className={buttonClasses(variant, className)} {...rest}>
       {children}
-      {arrow ? (
-        <span aria-hidden="true" className="transition-transform duration-300 group-hover/btn:translate-x-1">
-          →
-        </span>
-      ) : null}
     </Link>
   );
 }

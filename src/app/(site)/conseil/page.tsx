@@ -36,7 +36,7 @@ export default async function ConseilPage() {
           <Container size="wide" className="py-14 sm:py-16">
             <p className="surtitre text-sauge">Guide des tailles</p>
             <h2 id="taille-titre" className="mt-4 text-4xl sm:text-5xl">
-              Trouvez <em>votre</em> taille
+              Trouvez votre taille
             </h2>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-encre">
               Une première estimation pour savoir par où commencer. En boutique, on la vérifie en essayant.
