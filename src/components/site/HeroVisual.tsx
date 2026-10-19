@@ -1,29 +1,28 @@
-import Image from "next/image";
-import { Vitrine, type VitrineVariant } from "@/components/brand/Vitrine";
+import type { VitrineVariant } from "@/components/brand/Vitrine";
 import type { Media } from "@/content/types";
-import { getImageUrl } from "@/lib/content/format";
+import type { PhotoSlot } from "@/content/photos";
+import { PhotoFrame } from "./PhotoFrame";
 
 type HeroVisualProps = {
   image: Media | null;
   variant: VitrineVariant;
+  slot?: PhotoSlot;
+  monogramme?: string;
   priority?: boolean;
   className?: string;
 };
 
-/**
- * Photo administrée dans un cadre en arche, ou à défaut l'illustration
- * originale de la vitrine. Aucune image n'est présentée comme une photo de la
- * boutique si elle n'a pas été ajoutée par la boutique.
- */
-export function HeroVisual({ image, variant, priority = false, className = "" }: HeroVisualProps) {
-  const src = image ? getImageUrl(image.path) : null;
+/** Visuel d'en-tête en arche : photo de la boutique, sinon photo d'illustration, sinon satin. */
+export function HeroVisual({ image, variant, slot, monogramme, priority = false, className = "" }: HeroVisualProps) {
   return (
-    <div className={`relative aspect-[4/5] overflow-hidden rounded-t-full rounded-b-[2rem] shadow-[0_40px_80px_-40px_rgba(26,31,34,0.45)] ${className}`}>
-      {image && src ? (
-        <Image src={src} alt={image.alt} fill priority={priority} sizes="(min-width: 1024px) 40vw, 90vw" className="object-cover" />
-      ) : (
-        <Vitrine variant={variant} className="h-full w-full" />
-      )}
-    </div>
+    <PhotoFrame
+      media={image}
+      slot={slot}
+      variant={variant}
+      monogramme={monogramme}
+      priority={priority}
+      sizes="(min-width: 1024px) 34vw, 80vw"
+      className={`aspect-[4/5] rounded-t-full rounded-b-[2rem] shadow-[0_50px_90px_-40px_rgba(0,0,0,0.6)] ring-1 ring-lin/20 ${className}`}
+    />
   );
 }

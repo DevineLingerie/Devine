@@ -1,16 +1,17 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "light" | "dark";
+type Variant = "primary" | "secondary" | "light" | "dark" | "creme";
 
 const BASE =
-  "group/btn inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full px-7 py-3 text-[0.95rem] font-bold transition-all duration-300 ease-doux disabled:cursor-not-allowed disabled:opacity-60";
+  "group/btn inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full px-7 py-3 text-[0.95rem] font-semibold tracking-wide transition-all duration-300 ease-doux disabled:cursor-not-allowed disabled:opacity-60";
 
 const VARIANTS: Record<Variant, string> = {
-  primary: "bg-nuit text-lin hover:bg-argile hover:-translate-y-0.5",
-  secondary: "border-2 border-nuit bg-transparent text-nuit hover:bg-nuit hover:text-lin",
-  light: "border border-lin/40 text-lin hover:bg-lin hover:text-nuit",
-  dark: "bg-argile text-lin hover:bg-argile-fonce hover:-translate-y-0.5",
+  primary: "bg-argile text-lin shadow-[0_14px_30px_-14px_rgba(138,40,70,0.8)] hover:bg-argile-fonce",
+  secondary: "btn-secondaire border border-nuit/40 bg-transparent text-nuit hover:border-nuit hover:bg-nuit hover:text-lin",
+  light: "border border-lin/50 text-lin hover:bg-lin hover:text-nuit",
+  dark: "bg-nuit text-lin hover:bg-nuit-doux",
+  creme: "bg-lin text-nuit shadow-[0_14px_40px_-12px_rgba(244,183,156,0.55)] hover:bg-sable",
 };
 
 export function buttonClasses(variant: Variant = "primary", className = ""): string {

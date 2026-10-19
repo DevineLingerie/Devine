@@ -1,15 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, Instrument_Serif } from "next/font/google";
+import { Bodoni_Moda, Hanken_Grotesk } from "next/font/google";
 import { getSiteUrl } from "@/lib/env";
 import "./globals.css";
 
 // Polices sous licence SIL Open Font License (usage commercial autorisé),
 // auto-hébergées par next/font : aucune requête vers Google côté visiteur.
-const instrumentSerif = Instrument_Serif({
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
-  weight: "400",
   style: ["normal", "italic"],
-  variable: "--font-instrument-serif",
+  axes: ["opsz"],
+  variable: "--font-bodoni",
   display: "swap",
 });
 
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fffcf8",
+  themeColor: "#2a0f1c",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={`${instrumentSerif.variable} ${hanken.variable}`}>
+    <html lang="fr" className={`${bodoni.variable} ${hanken.variable}`}>
       <body>{children}</body>
     </html>
   );

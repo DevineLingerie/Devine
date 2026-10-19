@@ -1,36 +1,36 @@
 @import "tailwindcss";
 
 /*
- * DEVINE — système visuel (v4)
+ * DEVINE — système visuel « Velours » (v5)
  *
- * Lumineux et chaleureux : fond clair, touches nude (peau, tissus), sauge
- * (le végétal), bois blond de la boutique, prune profonde pour les actions,
- * nuit du plafond pour le pied de page.
- * Contrastes (WCAG AA) : nuit/lin 16,3:1 · encre/lin 7,1:1 · encre/sable 6:1
- * sauge/lin 7,7:1 · prune/lin 9,5:1 · bois-fonce/lin 6,5:1 · argile-clair/nuit 10,8:1
- * « bois » et « sauge-clair » sont décoratifs.
- * Les noms de jetons sont conservés : « argile » désigne la couleur d'action.
+ * La boutique la nuit, vitrine allumée : velours bordeaux profond (le plafond
+ * sombre), lumière pêche des spots, chair et crème des tissus, reflets de
+ * satin, lisières de dentelle. Pas de noir et or, pas de rose bonbon.
+ * Contrastes (WCAG AA) : velours/crème 16,4:1 · encre/crème 7,5:1
+ * mauve/crème 7:1 · bordeaux/crème 7,9:1 · pêche/velours 10,2:1
+ * Les noms de jetons sont conservés pour ne pas toucher aux composants :
+ * « nuit » = velours, « lin » = crème, « argile » = bordeaux.
  */
 
 @theme {
-  --color-lin: #ffffff;
-  --color-sable: #f8eee7;
-  --color-nude: #ecd3c3;
-  --color-bois: #c99d6e;
-  --color-bois-fonce: #7a5532;
-  --color-nuit: #1a1f22;
-  --color-nuit-doux: #262d31;
-  --color-encre: #51585c;
-  --color-sauge: #3d5845;
-  --color-sauge-clair: #a9c2ae;
-  --color-sauge-pale: #e5eee7;
-  --color-argile: #6b2d5c;
-  --color-argile-fonce: #4f1f44;
-  --color-argile-clair: #f2c9a8;
+  --color-lin: #fbf5ef;
+  --color-sable: #f5e3da;
+  --color-nude: #ebc8ba;
+  --color-bois: #d29a7c;
+  --color-bois-fonce: #8a5a44;
+  --color-nuit: #2a0f1c;
+  --color-nuit-doux: #3c1628;
+  --color-encre: #5e4a52;
+  --color-sauge: #6e4a55;
+  --color-sauge-clair: #c9a9b4;
+  --color-sauge-pale: #f1e4dd;
+  --color-argile: #8a2846;
+  --color-argile-fonce: #6a1c35;
+  --color-argile-clair: #f4b79c;
 
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-serif: var(--font-bodoni), "Didot", "Bodoni 72", ui-serif, Georgia, serif;
   --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bodoni), "Didot", "Bodoni 72", ui-serif, Georgia, serif;
 
   --ease-doux: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -55,9 +55,9 @@
   h2,
   h3 {
     font-family: var(--font-display);
-    font-weight: 700;
-    line-height: 1.04;
-    letter-spacing: -0.035em;
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
@@ -65,10 +65,7 @@
   h1 em,
   h2 em,
   h3 em {
-    font-family: var(--font-serif);
     font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.01em;
   }
 
   p {
@@ -142,6 +139,28 @@
     background-color: var(--color-bois);
   }
 
+  /* Reflets de satin : dégradés justifiés par la matière (plis et brillance). */
+  .satin {
+    --satin-a: var(--color-sable);
+    --satin-b: var(--color-nude);
+    --satin-c: var(--color-bois);
+    background:
+      radial-gradient(120% 70% at 18% 8%, rgb(255 255 255 / 0.55), transparent 55%),
+      radial-gradient(90% 60% at 88% 92%, rgb(42 15 28 / 0.28), transparent 60%),
+      linear-gradient(118deg, var(--satin-a) 0%, var(--satin-b) 28%, var(--satin-a) 46%, var(--satin-c) 68%, var(--satin-b) 84%, var(--satin-a) 100%);
+  }
+  .satin-chair { --satin-a: #f6e4da; --satin-b: #e7bfae; --satin-c: #d79f8a; }
+  .satin-bordeaux { --satin-a: #7a2340; --satin-b: #4a1428; --satin-c: #a2405e; }
+  .satin-prune { --satin-a: #4b2a3c; --satin-b: #2a1520; --satin-c: #6e4459; }
+  .satin-ivoire { --satin-a: #fbf3ea; --satin-b: #ead8c8; --satin-c: #d8bca6; }
+  .satin-peche { --satin-a: #f8d2bd; --satin-b: #eaa98c; --satin-c: #f4c3a8; }
+  .satin-mousse { --satin-a: #6b6150; --satin-b: #3f3a2e; --satin-c: #8a7d66; }
+
+  /* Dentelle : semis de petits jours sur les aplats sombres. */
+  .dentelle {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cg fill='none' stroke='%23f4b79c' stroke-opacity='.13' stroke-width='.7'%3E%3Ccircle cx='14' cy='14' r='5'/%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3Ccircle cx='28' cy='0' r='5'/%3E%3Ccircle cx='0' cy='28' r='5'/%3E%3Ccircle cx='28' cy='28' r='5'/%3E%3Cpath d='M14 9V0M14 19v9M9 14H0M19 14h9'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
   /* Trame de tulle : texture légère et propre à la lingerie. */
   .tulle {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='31' viewBox='0 0 18 31'%3E%3Cpath d='M9 0l9 5.2v10.4L9 20.8 0 15.6V5.2zM9 20.8V31M0 15.6l-9 5.2M18 15.6l9 5.2' fill='none' stroke='%231a1f22' stroke-opacity='.08' stroke-width='.6'/%3E%3C/svg%3E");
@@ -153,6 +172,31 @@
     font-weight: 600;
     letter-spacing: 0;
   }
+}
+
+/* Les spots du rail s'allument l'un après l'autre (un seul moment animé). */
+@keyframes allumage {
+  0% { opacity: 0; }
+  40% { opacity: 0.9; }
+  55% { opacity: 0.55; }
+  100% { opacity: 1; }
+}
+.spot {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .spot {
+    animation: allumage 1.2s var(--ease-doux) both;
+  }
+  .spot-2 { animation-delay: 0.35s; }
+  .spot-3 { animation-delay: 0.7s; }
+  .apres-allumage {
+    animation: lever 1.1s var(--ease-doux) 1.1s both;
+  }
+}
+@keyframes lever {
+  from { opacity: 0; transform: translateY(0.6rem); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: none; }
 }
 
 /* Apparition douce au défilement, désactivée si l'utilisateur réduit les animations. */
@@ -176,4 +220,14 @@
     opacity: 1;
     transform: none;
   }
+}
+
+/* Bouton secondaire posé sur un fond sombre (hors couche : prime sur les utilitaires). */
+.on-dark .btn-secondaire {
+  border-color: rgb(251 245 239 / 0.5);
+  color: var(--color-lin);
+}
+.on-dark .btn-secondaire:hover {
+  background-color: var(--color-lin);
+  color: var(--color-nuit);
 }

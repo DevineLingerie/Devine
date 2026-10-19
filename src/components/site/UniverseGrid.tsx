@@ -10,6 +10,7 @@ const VARIANTS: Record<string, VitrineVariant> = {
   "nuit-homewear": "nuit",
   bain: "conseil",
   chaussettes: "histoire",
+  accessoires: "homme",
 };
 
 const LINK_LABELS: Record<string, string> = {
@@ -35,13 +36,14 @@ export function UniverseGrid({ categories }: { categories: Category[] }) {
             media={category.image}
             slot={slot}
             variant={VARIANTS[category.slug] ?? "accueil"}
+            monogramme={category.name.charAt(0)}
             sizes={isFeatured ? "(min-width: 1024px) 45vw, 90vw" : "(min-width: 1024px) 22vw, 45vw"}
             className={`rounded-[1.5rem] transition-transform duration-500 group-hover:-translate-y-1 ${isFeatured ? "aspect-[4/5] sm:aspect-[5/4]" : "aspect-square"}`}
           />
         );
         const label = (
           <span className="mt-4 block">
-            <span className={`block font-display font-bold tracking-tight ${isFeatured ? "text-2xl sm:text-4xl" : "text-lg sm:text-2xl"}`}>
+            <span className={`block font-display ${isFeatured ? "text-3xl sm:text-5xl" : "text-xl sm:text-3xl"}`}>
               {category.name}
             </span>
             {category.summary && isFeatured ? <span className="mt-2 hidden max-w-md text-encre sm:block">{category.summary}</span> : null}

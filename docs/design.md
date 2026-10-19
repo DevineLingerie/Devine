@@ -1,45 +1,42 @@
 # Direction artistique
 
-## Intention
+## Intention : « Velours »
 
-Le site dialogue avec la boutique réelle : bois clair des placards et du comptoir, lignes courbes, plafond sombre, rails d'éclairage, vitrines sur la rue. L'expérience doit être élégante, chaleureuse et un peu complice, sans clichés de lingerie : pas de rose omniprésent, pas de silhouettes, pas de cœurs ni de noir et or.
+La boutique la nuit, vitrine allumée. Le velours bordeaux profond évoque le plafond sombre ; les spots du rail d'éclairage s'allument sur le nom ; les matières (satin, dentelle) remplacent les photos tant qu'elles ne sont pas disponibles. Élégant, sensuel sans être racoleur, et sans clichés : pas de noir et or, pas de rose bonbon, pas de silhouettes.
 
 ## Palette
 
-Toutes les couleurs sont définies une seule fois dans `src/app/globals.css` (`@theme`) et utilisées sous forme de classes Tailwind (`bg-sable`, `text-nuit`…). Direction lumineuse et chaleureuse, inspirée des sites de lingerie accessibles, ancrée dans les matières de la boutique.
+Toutes les couleurs sont définies une seule fois dans `src/app/globals.css` (`@theme`). Les noms de jetons historiques sont conservés pour ne pas toucher aux composants.
 
-| Nom (jeton) | Valeur | Rôle |
+| Jeton | Valeur | Rôle |
 | --- | --- | --- |
-| Lin (`lin`) | `#ffffff` | fond général |
-| Sable (`sable`) | `#f8eee7` | grands aplats chaleureux, en-têtes de page |
-| Nude (`nude`) | `#ecd3c3` | ton peau et tissu : bandeau d'invitation, sélection de texte |
-| Bois (`bois`, `bois-fonce`) | `#c99d6e`, `#7a5532` | bois blond des placards : détails, chiffres |
-| Sauge (`sauge`, `sauge-pale`) | `#3d5845`, `#e5eee7` | touche végétale : sur-titres, bandeau du haut, univers homme |
-| Prune (`argile`) | `#6b2d5c` | accent : liens, mots en italique, focus, survol des boutons |
-| Nuit (`nuit`) | `#1a1f22` | texte, boutons principaux, pied de page |
+| `nuit` (velours) | `#2a0f1c` | en-tête, grandes sections sombres, texte principal |
+| `lin` (crème) | `#fbf5ef` | fond clair, texte sur velours |
+| `sable` (chair) | `#f5e3da` | aplats clairs |
+| `nude` | `#ebc8ba` | pastilles, détails |
+| `argile` (bordeaux) | `#8a2846` | boutons principaux, liens, focus |
+| `argile-clair` (pêche) | `#f4b79c` | lumière des spots, accents sur velours |
+| `bois` | `#d29a7c` | rail et spots |
+| `encre`, `sauge` | `#5e4a52`, `#6e4a55` | textes secondaires |
 
-Contrastes vérifiés (WCAG AA) : nuit/lin 16,3:1 · encre/lin 7,1:1 · sauge/lin 7,7:1 · prune/lin 9,5:1 · bois foncé/lin 6,5:1. Le contrôle axe-core des tests de bout en bout le vérifie à chaque build.
-
-Si une charte graphique validée arrive, il suffit de remplacer ces valeurs : aucun composant ne contient de couleur en dur.
+Contrastes vérifiés (WCAG AA) : velours/crème 16,4:1 · encre/crème 7,5:1 · bordeaux/crème 7,9:1 · pêche/velours 10,2:1. Le contrôle axe-core des tests de bout en bout le vérifie à chaque build.
 
 ## Typographie
 
-- **Hanken Grotesk** (titres en gras, texte, boutons, formulaires) : sans-serif franche, moderne et accessible, dans l'esprit des marques de lingerie « bien dans son corps ».
-- **Instrument Serif** italique : uniquement pour les touches éditoriales (fin du titre d'accueil, mot mis en valeur avec `<em>`, citation, « 1912 », sceau, noms de marques).
+- **Bodoni Moda** (titres, nom « Devine » en italique) : didone de mode, très contrastée, réglée en optique (axe `opsz`).
+- **Hanken Grotesk** (texte, boutons, formulaires) : sans-serif claire et lisible.
 
-Les deux polices sont sous licence SIL Open Font License (usage commercial libre) et auto-hébergées par `next/font` : aucune requête vers Google côté visiteur.
+Licence SIL Open Font License (usage commercial libre), auto-hébergées par `next/font`.
 
 ## Éléments graphiques
 
-- **Mot-symbole** : « devine. » en très grand en tête de l'accueil, l'élément mémorable de la page ; tout le reste reste sobre (pas de capitales espacées, pas de flèches décoratives).
-- **Cadres photo** (`components/site/PhotoFrame.tsx`) : affichent, par ordre de priorité, la photo ajoutée dans l'administration, une photo d'illustration provisoire déclarée dans `src/content/photos.ts` (avec crédit, affiché dans les mentions légales), sinon l'illustration Vitrine.
-- **Vitrine** (`src/components/brand/Vitrine.tsx`) : illustration originale, non photographique. La boutique vue comme une vitrine en arche : plafond sombre, rail d'éclairage et ses faisceaux, comptoir courbe en bois, trame de tulle. Elle tient la place des photos ; une photo ajoutée dans l'administration la remplace dans le même cadre en arche.
-- **Sceau** (`Sceau.tsx`) : médaillon circulaire « Lingerie · depuis 1912 · femme & homme ».
-- **Trame de tulle** (classe `.tulle`) : texture hexagonale très légère, propre à la lingerie, sur les grands aplats.
-- **Logotype provisoire** : « devine. » en minuscules grasses avec un point prune, signature en petites capitales.
-- **Outil « Trouvez votre taille »** (`components/site/SizeFinder.tsx`, calcul dans `lib/sizing.ts`) : estimation indicative à partir de deux mesures, calculée dans le navigateur, sans envoi de données.
-- **Icônes** (`components/ui/Icon.tsx`) : dessinées pour le site, au trait.
-- **Animations** : une simple apparition au défilement, uniquement si le navigateur la gère et si l'utilisateur n'a pas demandé à réduire les animations. Le contenu reste lisible à tout moment.
+- **Les spots qui s'allument** (`components/site/HeroVelours.tsx`) : seul moment animé du site ; désactivé si l'utilisateur réduit les animations.
+- **Satin** (`components/brand/Satin.tsx`, classes `.satin-*`) : reflets de tissu avec monogramme brodé, en attendant les photos.
+- **Dentelle** (classe `.dentelle`) : semis de petits jours sur le velours. **Lisière** (`Lisiere.tsx`) : festons ajourés entre les sections.
+- **Cadres photo** (`components/site/PhotoFrame.tsx`) : photo de l'administration, sinon photo d'illustration créditée (`src/content/photos.ts`), sinon satin.
+- **Sceau** (`Sceau.tsx`) : médaillon « Lingerie · depuis 1912 · femme & homme ».
+- **Outil « Trouvez votre taille »** (`components/site/SizeFinder.tsx`) : estimation indicative calculée dans le navigateur.
+- **Logotype provisoire** : « Devine » en Bodoni italique.
 
 ## Composants
 

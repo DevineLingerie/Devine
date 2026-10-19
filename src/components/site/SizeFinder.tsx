@@ -5,7 +5,7 @@ import { useId, useState, type FormEvent } from "react";
 import { estimateBraSize, MEASURE_LIMITS, type SizeEstimate } from "@/lib/sizing";
 
 const inputClass =
-  "mt-2 block w-full rounded-2xl border-2 border-nuit/15 bg-lin px-4 py-3.5 text-xl font-bold text-nuit focus:border-nuit";
+  "mt-2 block w-full rounded-2xl border-2 border-nuit/15 bg-lin px-4 py-3.5 text-xl font-semibold text-nuit focus:border-argile";
 
 /** Outil « Trouvez votre taille » : estimation locale, rien n'est envoyé. */
 export function SizeFinder() {
@@ -75,7 +75,7 @@ export function SizeFinder() {
           </div>
         </div>
         <div>
-          <button type="submit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-nuit px-7 font-bold text-lin transition-colors hover:bg-argile">
+          <button type="submit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-argile px-7 font-semibold tracking-wide text-lin transition-colors hover:bg-argile-fonce">
             Estimer ma taille
           </button>
         </div>
@@ -86,7 +86,7 @@ export function SizeFinder() {
         {result === null ? (
           <>
             <p className="surtitre text-sauge">Votre estimation</p>
-            <p className="mt-3 text-2xl font-bold tracking-tight">Renseignez vos deux mesures.</p>
+            <p className="mt-3 font-display text-3xl">Renseignez vos deux mesures.</p>
             <p className="mt-3 text-encre">Vous obtiendrez une taille de départ, à confirmer en essayage.</p>
           </>
         ) : result.status === "erreur" ? (
@@ -97,7 +97,7 @@ export function SizeFinder() {
         ) : result.status === "ok" ? (
           <>
             <p className="surtitre text-sauge">Taille indicative</p>
-            <p className="mt-2 text-7xl font-bold tracking-tight">
+            <p className="mt-2 font-display text-8xl italic">
               {result.bandFr} {result.cup}
             </p>
             <p className="mt-2 text-encre">
@@ -114,7 +114,7 @@ export function SizeFinder() {
         ) : (
           <>
             <p className="surtitre text-sauge">Taille hors tableau standard</p>
-            <p className="mt-3 text-2xl font-bold tracking-tight">
+            <p className="mt-3 font-display text-3xl">
               Tour de dos {result.bandFr} ({result.bandEu} européen),{" "}
               {result.reason === "grand-bonnet" ? "bonnet au-delà du K" : "bonnet plus petit que AA"}.
             </p>

@@ -54,17 +54,17 @@ export function MobileMenu({ items }: { items: NavItem[] }) {
       <div
         id={panelId}
         hidden={!open}
-        className="fixed inset-x-0 bottom-0 top-[6.75rem] z-40 overflow-y-auto bg-lin px-4 pb-10 pt-6 sm:px-6"
+        className="dentelle fixed inset-x-0 bottom-0 top-[6.75rem] z-40 overflow-y-auto bg-nuit px-4 pb-10 pt-6 text-lin sm:px-6"
       >
         <nav aria-label="Navigation principale">
           <NavLinks
             items={items}
-            className="grid gap-1 border-t border-nuit/10"
-            linkClassName="block border-b border-nuit/10 py-4 font-display text-3xl"
+            className="grid gap-1 border-t border-lin/15"
+            linkClassName="block border-b border-lin/15 py-4 font-display text-4xl italic"
             onNavigate={() => setOpen(false)}
           />
         </nav>
-        <Link href={contactNavItem.href} onClick={() => setOpen(false)} className={buttonClasses("primary", "mt-8 w-full")}>
+        <Link href={contactNavItem.href} onClick={() => setOpen(false)} className={buttonClasses("creme", "mt-8 w-full")}>
           {contactNavItem.label}
         </Link>
       </div>

@@ -16,10 +16,10 @@ const NETWORK_LABELS: Record<SocialNetwork, string> = {
 export async function SiteFooter() {
   const settings = await getSiteSettings();
   return (
-    <footer className="on-dark overflow-hidden bg-nuit text-lin">
+    <footer className="on-dark dentelle overflow-hidden bg-nuit text-lin">
       <Container size="wide" className="grid gap-12 pb-10 pt-16 lg:grid-cols-[1.2fr_2fr] lg:pt-20">
         <div>
-          {settings.promise ? <p className="max-w-sm font-serif text-3xl italic leading-tight text-lin">{settings.promise}</p> : null}
+          {settings.promise ? <p className="max-w-sm font-display text-3xl italic leading-tight text-lin">{settings.promise}</p> : null}
           {settings.socialLinks.length > 0 ? (
             <ul className="mt-8 flex flex-wrap gap-3">
               {settings.socialLinks.map((link) => (
@@ -51,8 +51,8 @@ export async function SiteFooter() {
       </Container>
       <Container size="wide">
         <svg aria-hidden="true" focusable="false" viewBox="0 0 1000 170" className="block w-full select-none">
-          <text x="500" y="140" textAnchor="middle" fontSize="230" letterSpacing="-8" fontWeight="700" fill="#ffffff" fillOpacity="0.07" style={{ fontFamily: "var(--font-display)" }}>
-            devine.
+          <text x="500" y="150" textAnchor="middle" fontSize="240" fontStyle="italic" fill="#f4b79c" fillOpacity="0.1" style={{ fontFamily: "var(--font-display)" }}>
+            Devine
           </text>
         </svg>
       </Container>
