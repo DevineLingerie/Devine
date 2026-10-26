@@ -2,6 +2,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { MotionObserver } from "@/components/motion/MotionObserver";
 import { getSiteSettings } from "@/lib/content/repository";
 import { buildLocalBusinessJsonLd } from "@/lib/seo";
 
@@ -15,6 +16,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         {children}
       </main>
       <SiteFooter />
+      <MotionObserver />
       <JsonLd data={buildLocalBusinessJsonLd(settings)} />
     </>
   );

@@ -10,14 +10,16 @@ export default function SiteError({ error, reset }: { error: Error & { digest?: 
   }, [error]);
 
   return (
-    <Container size="narrow" className="py-20 text-center">
+    <section className="on-dark dentelle bg-nuit text-lin">
+    <Container size="narrow" className="pb-20 pt-36 text-center">
       <h1 className="text-4xl">Un petit contretemps</h1>
-      <p className="mx-auto mt-6 max-w-lg text-lg text-encre">
+      <p className="mx-auto mt-6 max-w-lg text-lg text-lin/80">
         Cette page n&apos;a pas pu s&apos;afficher. Réessayez dans un instant.
       </p>
-      <Button className="mt-8" onClick={reset}>
+      <Button className="mt-8" variant="creme" onClick={reset}>
         Réessayer
       </Button>
     </Container>
+    </section>
   );
 }

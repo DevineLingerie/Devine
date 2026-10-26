@@ -1,21 +1,21 @@
 import type { ReactNode } from "react";
 import { Sceau } from "@/components/brand/Sceau";
+import { Projecteur } from "@/components/motion/Projecteur";
 import { Container } from "@/components/ui/Container";
 
 type CtaBandProps = { title: string; text?: string; children: ReactNode };
 
-/** Invitation à venir en boutique, sur un satin bordeaux. */
+/** Invitation finale, plein écran, sur satin bordeaux éclairé par le projecteur. */
 export function CtaBand({ title, text, children }: CtaBandProps) {
   return (
-    <section className="px-3 py-16 sm:px-5 sm:py-20">
-      <div className="on-dark satin satin-bordeaux relative mx-auto max-w-[96rem] overflow-hidden rounded-[2rem] text-lin sm:rounded-[2.75rem]">
-        <Container size="narrow" className="relative py-16 text-center sm:py-24">
-          <Sceau className="mx-auto mb-8 h-24 w-24" />
-          <h2 className="text-5xl sm:text-7xl">{title}</h2>
-          {text ? <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-lin/85">{text}</p> : null}
-          <div className="mt-10 flex flex-wrap justify-center gap-3">{children}</div>
-        </Container>
-      </div>
+    <section className="on-dark satin satin-bordeaux relative isolate flex min-h-[80svh] items-center overflow-hidden text-lin">
+      <Projecteur />
+      <Container size="narrow" className="reveal relative py-24 text-center">
+        <Sceau className="mx-auto mb-10 h-28 w-28" />
+        <h2 className="text-6xl sm:text-8xl">{title}</h2>
+        {text ? <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-lin/85 sm:text-xl">{text}</p> : null}
+        <div className="mt-11 flex flex-wrap justify-center gap-3">{children}</div>
+      </Container>
     </section>
   );
 }

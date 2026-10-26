@@ -26,14 +26,14 @@ export default async function ConseilPage() {
         <ButtonLink href="/contact">Préparer ma visite</ButtonLink>
       </PageHero>
 
-      <Container size="wide" className="grid gap-14 py-20 sm:py-24">
+      <Container size="full" className="grid gap-14 py-20 sm:py-24">
         <TextSection section={getSection(page, "pourquoi")} layout="split" />
         <TextSection section={getSection(page, "taille")} layout="split" />
       </Container>
 
       <section id="taille" aria-labelledby="taille-titre" className="scroll-mt-28 px-3 pb-20 sm:px-5 sm:pb-24">
         <div className="mx-auto max-w-[96rem] rounded-[2rem] bg-sable sm:rounded-[2.75rem]">
-          <Container size="wide" className="py-14 sm:py-16">
+          <Container size="full" className="py-14 sm:py-16">
             <p className="surtitre text-sauge">Guide des tailles</p>
             <h2 id="taille-titre" className="mt-4 text-4xl sm:text-5xl">
               Trouvez votre taille
@@ -50,7 +50,7 @@ export default async function ConseilPage() {
 
       {deroulement ? (
         <section aria-labelledby="deroulement" className="bg-sauge-pale">
-          <Container size="wide" className="py-20 sm:py-24">
+          <Container size="full" className="py-20 sm:py-24">
             <h2 id="deroulement" className="text-4xl sm:text-5xl">
               {deroulement.heading}
             </h2>
@@ -61,7 +61,7 @@ export default async function ConseilPage() {
 
       {services.length > 0 ? (
         <section aria-labelledby="services" className="bg-sable">
-          <Container size="wide" className="py-20 sm:py-24">
+          <Container size="full" className="py-20 sm:py-24">
             <h2 id="services" className="text-4xl sm:text-5xl">
               Nos services
             </h2>
@@ -72,7 +72,7 @@ export default async function ConseilPage() {
         </section>
       ) : null}
 
-      <Container size="wide" className="pb-20 sm:pb-24">
+      <Container size="full" className="pb-20 sm:pb-24">
         <TextSection section={getSection(page, "approche")} layout="split" />
       </Container>
 

@@ -16,10 +16,10 @@ export default async function NuitHomewearBainPage() {
   return (
     <>
       <PageHero page={page} eyebrow="Nuit · homewear · bain" variant="nuit" />
-      <Container size="wide" className="py-16 sm:py-20">
+      <Container size="full" className="py-16 sm:py-20">
         <ul className="grid gap-6 md:grid-cols-3">
-          {sections.map((section) => (
-            <li key={section.key} className="apparition rounded-[2rem] bg-sable p-7 sm:p-9">
+          {sections.map((section, index) => (
+            <li key={section.key} className="reveal satin satin-chair rounded-[2rem] p-8 sm:p-10" style={{ ["--d" as string]: index }}>
               <h2 className="text-4xl">{section.heading}</h2>
               <RichText text={section.body} className="mt-4 text-encre" />
             </li>

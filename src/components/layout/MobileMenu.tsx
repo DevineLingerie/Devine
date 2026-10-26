@@ -54,7 +54,7 @@ export function MobileMenu({ items }: { items: NavItem[] }) {
       <div
         id={panelId}
         hidden={!open}
-        className="dentelle fixed inset-x-0 bottom-0 top-[6.75rem] z-40 overflow-y-auto bg-nuit px-4 pb-10 pt-6 text-lin sm:px-6"
+        className="dentelle fixed inset-x-0 bottom-0 top-[4.5rem] z-40 overflow-y-auto bg-nuit px-4 pb-10 pt-6 text-lin sm:px-6"
       >
         <nav aria-label="Navigation principale">
           <NavLinks

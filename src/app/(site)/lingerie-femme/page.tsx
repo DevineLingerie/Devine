@@ -23,7 +23,7 @@ export default async function LingerieFemmePage() {
           Préparer ma visite
         </ButtonLink>
       </PageHero>
-      <Container size="wide" className="grid gap-14 py-20 sm:py-24">
+      <Container size="full" className="grid gap-14 py-20 sm:py-24">
         <TextSection section={getSection(page, "selection")} layout="split" />
         <TextSection section={getSection(page, "tailles")} layout="split" />
         <TextSection section={getSection(page, "coupe")} layout="split" />
@@ -31,7 +31,7 @@ export default async function LingerieFemmePage() {
       </Container>
       {complementaires.length > 0 ? (
         <section aria-labelledby="aussi" className="border-t border-nuit/10">
-          <Container size="wide" className="py-20">
+          <Container size="full" className="py-20">
             <h2 id="aussi" className="text-4xl">
               À découvrir aussi
             </h2>

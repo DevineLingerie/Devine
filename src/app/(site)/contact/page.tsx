@@ -1,3 +1,4 @@
+import { PageIntro } from "@/components/site/PageIntro";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { PracticalInfo } from "@/components/site/PracticalInfo";
 import { Container } from "@/components/ui/Container";
@@ -17,18 +18,16 @@ export default async function ContactPage() {
   const formulaire = getSection(page, "formulaire");
   return (
     <>
-      <Container size="wide" className="py-14 sm:py-20">
-        <p className="surtitre mb-5 text-sauge">Contact</p>
-        <h1 className="text-5xl leading-none sm:text-6xl lg:text-7xl">{page.heading}</h1>
-        {page.intro ? <p className="mt-6 max-w-2xl text-lg text-encre sm:text-xl">{page.intro}</p> : null}
-        <div className="mt-12">
+      <PageIntro eyebrow="Contact" title={page.heading} intro={page.intro} />
+      <Container size="full" className="py-20 sm:py-24">
+        <div className="reveal">
           <PracticalInfo settings={settings} headingLevel={2} />
         </div>
       </Container>
 
       {visite ? (
         <section aria-labelledby="preparer" className="bg-sauge-pale">
-          <Container size="wide" className="py-16 sm:py-20">
+          <Container size="full" className="py-16 sm:py-20">
             <h2 id="preparer" className="text-4xl sm:text-5xl">
               {visite.heading}
             </h2>

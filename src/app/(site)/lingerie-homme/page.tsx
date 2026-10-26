@@ -20,7 +20,7 @@ export default async function LingerieHommePage() {
           Nuit, homewear et bain
         </ButtonLink>
       </PageHero>
-      <Container size="wide" className="grid gap-14 py-20 sm:py-24">
+      <Container size="full" className="grid gap-14 py-20 sm:py-24">
         <TextSection section={getSection(page, "selection")} layout="split" />
         <TextSection section={getSection(page, "confort")} layout="split" />
         <TextSection section={getSection(page, "conseil")} layout="split" />

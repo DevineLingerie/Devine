@@ -28,9 +28,28 @@ Contrastes vérifiés (WCAG AA) : velours/crème 16,4:1 · encre/crème 7,5:1 ·
 
 Licence SIL Open Font License (usage commercial libre), auto-hébergées par `next/font`.
 
+## Mise en page
+
+Pleine page : sections de bord à bord (`Container size="full"`), accroche et en-têtes de pages en plein écran, en-tête transparent qui devient velours au défilement.
+
+## Mouvement
+
+Règle : tout reste lisible sans JavaScript et avec « réduire les animations » (vérifié par `tests/e2e/mouvement.spec.ts`).
+
+| Effet | Où | Fichier |
+| --- | --- | --- |
+| Lettres du nom qui se posent, spots qui s'allument | accueil | `components/site/HeroAccueil.tsx` |
+| Halo qui suit le pointeur (dérive seul sur mobile) | accroches, invitation finale | `components/motion/Projecteur.tsx` |
+| Révélation au défilement (classe `.reveal`, délai `--d`) | tout le site | `components/motion/MotionObserver.tsx` |
+| Bandeau défilant (pause au survol) | engagements, marques | `components/motion/Bandeau.tsx` |
+| Promesse qui s'éclaire mot à mot | accueil | `components/motion/TexteEclaire.tsx` |
+| Étapes en cartes qui s'empilent | accueil | `components/site/EtapesEmpilees.tsx` |
+| Parallaxe des visuels, « 1912 » qui grandit | accueil | classes `.parallaxe`, `.grandit` |
+
+Les effets liés au défilement (parallaxe, mot à mot, 1912) utilisent les animations CSS pilotées par le défilement : les navigateurs qui ne les gèrent pas affichent simplement le contenu.
+
 ## Éléments graphiques
 
-- **Les spots qui s'allument** (`components/site/HeroVelours.tsx`) : seul moment animé du site ; désactivé si l'utilisateur réduit les animations.
 - **Satin** (`components/brand/Satin.tsx`, classes `.satin-*`) : reflets de tissu avec monogramme brodé, en attendant les photos.
 - **Dentelle** (classe `.dentelle`) : semis de petits jours sur le velours. **Lisière** (`Lisiere.tsx`) : festons ajourés entre les sections.
 - **Cadres photo** (`components/site/PhotoFrame.tsx`) : photo de l'administration, sinon photo d'illustration créditée (`src/content/photos.ts`), sinon satin.

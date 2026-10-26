@@ -21,11 +21,11 @@ export default async function HistoirePage() {
   return (
     <>
       <PageHero page={page} eyebrow="Notre histoire" variant="histoire" />
-      <Container size="wide" className="py-20 sm:py-24">
+      <Container size="full" className="py-20 sm:py-24">
         <ol className="relative grid gap-14 border-l border-bois pl-8 sm:pl-12">
           {etapes.map(({ label, section }) =>
             section ? (
-              <li key={section.key} className="relative">
+              <li key={section.key} className="reveal reveal-gauche relative">
                 <span aria-hidden="true" className="absolute -left-[2.45rem] top-2 h-3 w-3 rounded-full bg-argile sm:-left-[3.45rem]" />
                 <p className="font-serif text-xl italic text-bois-fonce">{label}</p>
                 <TextSection section={section} className="mt-2 max-w-2xl" />

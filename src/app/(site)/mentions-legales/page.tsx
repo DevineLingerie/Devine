@@ -1,3 +1,4 @@
+import { PageIntro } from "@/components/site/PageIntro";
 import { TextSection } from "@/components/site/TextSection";
 import { Container } from "@/components/ui/Container";
 import { formatAddressLines } from "@/lib/content/format";
@@ -24,9 +25,9 @@ export default async function MentionsLegalesPage() {
   const [page, settings] = await Promise.all([requirePage("mentions-legales"), getSiteSettings()]);
   const shopAddress = formatAddressLines(settings).join(", ") || null;
   return (
-    <Container size="narrow" className="py-14 sm:py-20">
-      <h1 className="text-5xl leading-none sm:text-6xl">{page.heading}</h1>
-      {page.intro ? <p className="mt-6 text-lg text-encre">{page.intro}</p> : null}
+    <>
+    <PageIntro title={page.heading} intro={page.intro} />
+    <Container size="narrow" className="py-16 sm:py-20">
 
       <section aria-labelledby="editeur" className="mt-12">
         <h2 id="editeur" className="text-4xl">
@@ -81,5 +82,6 @@ export default async function MentionsLegalesPage() {
         <TextSection key={section.key} section={section} className="mt-12" />
       ))}
     </Container>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * DEVINE — système visuel « Velours » (v5)
+ * DEVINE — système visuel « Velours » (v6, pleine page et animé)
  *
  * La boutique la nuit, vitrine allumée : velours bordeaux profond (le plafond
  * sombre), lumière pêche des spots, chair et crème des tissus, reflets de
@@ -174,52 +174,170 @@
   }
 }
 
-/* Les spots du rail s'allument l'un après l'autre (un seul moment animé). */
-@keyframes allumage {
-  0% { opacity: 0; }
-  40% { opacity: 0.9; }
-  55% { opacity: 0.55; }
-  100% { opacity: 1; }
+/* ==========================================================================
+   Mouvement
+   Principe : tout est lisible sans JavaScript et sans animation. Les effets
+   ne s'activent que lorsque le navigateur les permet et que l'utilisateur n'a
+   pas demandé à réduire les animations.
+   ========================================================================== */
+
+/* Révélation au défilement. La classe html[data-motion] est posée par
+   MotionObserver après avoir marqué visibles les éléments déjà à l'écran. */
+html[data-motion] .reveal {
+  opacity: 0;
+  transform: translate3d(0, 2.5rem, 0);
+  filter: blur(8px);
+  transition:
+    opacity 1s var(--ease-doux),
+    transform 1.1s var(--ease-doux),
+    filter 1s var(--ease-doux);
+  transition-delay: calc(var(--d, 0) * 110ms);
 }
-.spot {
+html[data-motion] .reveal[data-visible="true"] {
   opacity: 1;
+  transform: none;
+  filter: none;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .spot {
-    animation: allumage 1.2s var(--ease-doux) both;
-  }
-  .spot-2 { animation-delay: 0.35s; }
-  .spot-3 { animation-delay: 0.7s; }
-  .apres-allumage {
-    animation: lever 1.1s var(--ease-doux) 1.1s both;
-  }
+html[data-motion] .reveal-gauche {
+  transform: translate3d(-3rem, 0, 0);
 }
-@keyframes lever {
-  from { opacity: 0; transform: translateY(0.6rem); filter: blur(4px); }
-  to { opacity: 1; transform: none; filter: none; }
+html[data-motion] .reveal-zoom {
+  transform: scale(0.92);
 }
 
-/* Apparition douce au défilement, désactivée si l'utilisateur réduit les animations. */
+/* Lettres du nom qui se posent une à une au chargement. */
+@media (prefers-reduced-motion: no-preference) {
+  .lettre {
+    display: inline-block;
+    animation: lettre 1.2s var(--ease-doux) both;
+    animation-delay: calc(0.25s + var(--i) * 0.09s);
+  }
+  .apres-lettres {
+    animation: lever 1s var(--ease-doux) 1s both;
+  }
+}
+@keyframes lettre {
+  from { opacity: 0; transform: translate3d(0, 45%, 0) rotate(6deg); filter: blur(10px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes lever {
+  from { opacity: 0; transform: translate3d(0, 1rem, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Spots du rail : allumage en cascade. */
+@media (prefers-reduced-motion: no-preference) {
+  .spot {
+    animation: allumage 1.4s var(--ease-doux) both;
+  }
+  .spot-2 { animation-delay: 0.3s; }
+  .spot-3 { animation-delay: 0.6s; }
+}
+@keyframes allumage {
+  0% { opacity: 0; }
+  35% { opacity: 0.9; }
+  50% { opacity: 0.45; }
+  100% { opacity: 1; }
+}
+
+/* Halo qui suit le pointeur (variables posées par Projecteur). */
+.projecteur {
+  background: radial-gradient(
+    38rem 38rem at var(--px, 50%) var(--py, 40%),
+    rgb(255 210 186 / 0.28),
+    rgb(244 183 156 / 0.08) 45%,
+    transparent 70%
+  );
+}
+@media (prefers-reduced-motion: no-preference) {
+  .projecteur[data-auto="true"] {
+    animation: derive 14s ease-in-out infinite alternate;
+  }
+}
+@keyframes derive {
+  0% { --px: 30%; --py: 35%; }
+  50% { --px: 70%; --py: 45%; }
+  100% { --px: 45%; --py: 60%; }
+}
+@property --px { syntax: "<percentage>"; inherits: true; initial-value: 50%; }
+@property --py { syntax: "<percentage>"; inherits: true; initial-value: 40%; }
+
+/* Bandeau défilant. */
+.bandeau-piste {
+  display: flex;
+  width: max-content;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bandeau-piste {
+    animation: defile var(--duree, 40s) linear infinite;
+  }
+  .bandeau-piste[data-sens="inverse"] {
+    animation-direction: reverse;
+  }
+  .bandeau:hover .bandeau-piste,
+  .bandeau:focus-within .bandeau-piste {
+    animation-play-state: paused;
+  }
+}
+@keyframes defile {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Effets liés au défilement (navigateurs compatibles uniquement). */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
-    .apparition {
-      animation: apparition linear both;
+    /* Parallaxe douce des visuels. */
+    .parallaxe {
+      animation: parallaxe linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 40%;
+    }
+    /* Texte qui s'éclaire mot à mot. */
+    .mot {
+      opacity: 0.18;
+      animation: eclaire linear both;
+      animation-timeline: --phrase;
+      animation-range: cover calc(18% + var(--p) * 0.42%) cover calc(24% + var(--p) * 0.42%);
+    }
+    .phrase {
+      view-timeline: --phrase block;
+    }
+    /* Chiffre qui grandit. */
+    .grandit {
+      animation: grandit linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 55%;
     }
   }
 }
+@keyframes parallaxe {
+  from { transform: translate3d(0, -6%, 0) scale(1.12); }
+  to { transform: translate3d(0, 6%, 0) scale(1.12); }
+}
+@keyframes eclaire {
+  to { opacity: 1; }
+}
+@keyframes grandit {
+  from { transform: scale(0.6); opacity: 0.2; }
+  to { transform: scale(1); opacity: 1; }
+}
 
-@keyframes apparition {
-  /* Jamais totalement invisible : le contenu reste lisible même sans défilement. */
-  from {
-    opacity: 0.55;
-    transform: translateY(0.75rem);
+/* Indication de défilement sous l'accroche. */
+@media (prefers-reduced-motion: no-preference) {
+  .indice-defilement span::after {
+    animation: indice 2.2s ease-in-out infinite;
   }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+}
+@keyframes indice {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(220%); }
+}
+
+/* Masque la barre de défilement des carrousels (le défilement reste possible). */
+.sans-barre {
+  scrollbar-width: none;
+}
+.sans-barre::-webkit-scrollbar {
+  display: none;
 }
 
 /* Bouton secondaire posé sur un fond sombre (hors couche : prime sur les utilitaires). */
