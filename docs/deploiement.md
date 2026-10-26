@@ -24,6 +24,18 @@ Les mêmes que dans [`.env.example`](../.env.example), avec les valeurs de produ
 
 Elles doivent être présentes **pendant le build** : les variables `NEXT_PUBLIC_*` sont intégrées au code compilé.
 
+## Version statique sur la formule Premium (en place)
+
+La formule actuelle (Hostinger **Premium**) n'exécute pas d'application Node.js. En attendant, la partie publique est publiée en **version statique** :
+
+```bash
+npm run export:statique      # produit export-statique.zip (adresse : NEXT_PUBLIC_SITE_URL, par défaut https://devine-lingerie.fr)
+```
+
+Puis, dans hPanel : **Fichiers → Gestionnaire de fichiers → public_html**, envoyer `export-statique.zip` et l'extraire (ou utiliser l'opération « Deploy static site archive » de l'API Hostinger). Le fichier `.htaccess` fourni (`deploy/static.htaccess`) gère les adresses sans `.html`, la page 404, le HTTPS et les en-têtes de sécurité.
+
+Limites de la version statique : pas d'administration, pas de formulaire de contact (il affiche « bientôt disponible »), contenus figés au moment de l'export. Pour tout activer : passer à la formule **Business** (ou Cloud) et suivre l'option A ci-dessous.
+
 ## Option A — Hostinger (application Node.js)
 
 Hostinger propose l'hébergement d'applications Node.js (dont Next.js) avec déploiement depuis GitHub sur ses offres **Business** et **Cloud**. Les offres VPS le permettent aussi, mais avec une configuration manuelle. Vérifiez votre formule dans hPanel avant de commencer : l'offre « Premium » mutualisée ne suffit pas.
