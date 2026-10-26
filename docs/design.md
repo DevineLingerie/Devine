@@ -38,8 +38,9 @@ Règle : tout reste lisible sans JavaScript et avec « réduire les animations �
 
 | Effet | Où | Fichier |
 | --- | --- | --- |
-| Lettres du nom qui se posent, spots qui s'allument | accueil | `components/site/HeroAccueil.tsx` |
-| Halo qui suit le pointeur (dérive seul sur mobile) | accroches, invitation finale | `components/motion/Projecteur.tsx` |
+| Carrousel plein écran (fondu, lent zoom, progression, pause) | accueil | `components/site/HeroCarrousel.tsx`, photos dans `src/content/carrousel.ts` |
+| Lettres du nom qui se posent | accueil | classe `.lettre` |
+| Halo qui suit le pointeur (dérive seul sur mobile) | en-têtes des pages intérieures | `components/motion/Projecteur.tsx` |
 | Révélation au défilement (classe `.reveal`, délai `--d`) | tout le site | `components/motion/MotionObserver.tsx` |
 | Bandeau défilant (pause au survol) | engagements, marques | `components/motion/Bandeau.tsx` |
 | Promesse qui s'éclaire mot à mot | accueil | `components/motion/TexteEclaire.tsx` |

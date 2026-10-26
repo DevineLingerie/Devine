@@ -3,7 +3,8 @@ import { Bandeau } from "@/components/motion/Bandeau";
 import { TexteEclaire } from "@/components/motion/TexteEclaire";
 import { CtaBand } from "@/components/site/CtaBand";
 import { EtapesEmpilees } from "@/components/site/EtapesEmpilees";
-import { HeroAccueil } from "@/components/site/HeroAccueil";
+import { HeroCarrousel } from "@/components/site/HeroCarrousel";
+import { diapositives } from "@/content/carrousel";
 import { PhotoFrame } from "@/components/site/PhotoFrame";
 import { PracticalInfo } from "@/components/site/PracticalInfo";
 import { SizeFinder } from "@/components/site/SizeFinder";
@@ -46,20 +47,32 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* 1. Accroche plein écran */}
-      <HeroAccueil nom="Devine">
-        {settings.tagline ? <p className="font-display text-xl italic text-argile-clair sm:text-2xl">{settings.tagline}</p> : null}
-        <h1 className="mt-4 text-3xl leading-tight sm:text-[2.8rem]">{page.heading}</h1>
-        {page.intro ? <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-lin/80 sm:text-lg">{page.intro}</p> : null}
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <ButtonLink href="/contact" variant="creme">
-            Préparer ma visite
-          </ButtonLink>
-          <ButtonLink href="#taille" variant="light">
-            Trouver ma taille
-          </ButtonLink>
+      {/* 1. Accroche plein écran : texte fixe et carrousel de photos */}
+      <HeroCarrousel diapositives={diapositives}>
+        <p
+          aria-hidden="true"
+          className="select-none font-display text-[clamp(4.5rem,13vw,10rem)] italic leading-[0.85] tracking-[-0.03em]"
+        >
+          {Array.from("Devine").map((lettre, index) => (
+            <span key={index} className="lettre" style={{ ["--i" as string]: index }}>
+              {lettre}
+            </span>
+          ))}
+        </p>
+        <div className="apres-lettres mt-6 max-w-xl">
+          {settings.tagline ? <p className="font-display text-xl italic text-argile-clair sm:text-2xl">{settings.tagline}</p> : null}
+          <h1 className="mt-4 text-3xl leading-tight sm:text-[2.6rem]">{page.heading}</h1>
+          {page.intro ? <p className="mt-5 text-base leading-relaxed text-lin/80 sm:text-lg">{page.intro}</p> : null}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <ButtonLink href="/contact" variant="creme">
+              Préparer ma visite
+            </ButtonLink>
+            <ButtonLink href="#taille" variant="light">
+              Trouver ma taille
+            </ButtonLink>
+          </div>
         </div>
-      </HeroAccueil>
+      </HeroCarrousel>
 
       {/* 2. Bandeau des engagements */}
       <div id="suite" className="scroll-mt-16">

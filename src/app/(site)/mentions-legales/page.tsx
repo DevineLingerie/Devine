@@ -5,6 +5,7 @@ import { formatAddressLines } from "@/lib/content/format";
 import { getPageMetadata, requirePage } from "@/lib/content/page-loader";
 import { getSiteSettings } from "@/lib/content/repository";
 import { stockPhotos } from "@/content/photos";
+import { diapositives } from "@/content/carrousel";
 
 export function generateMetadata() {
   return getPageMetadata("mentions-legales", "/mentions-legales");
@@ -58,6 +59,21 @@ export default async function MentionsLegalesPage() {
           <Item label="Contact" value={settings.hostContact} />
         </dl>
       </section>
+
+      {diapositives.length > 0 ? (
+        <section aria-labelledby="credits-carrousel" className="mt-12">
+          <h2 id="credits-carrousel" className="text-4xl">
+            Photos de l&apos;accueil
+          </h2>
+          <ul className="mt-4 grid gap-2">
+            {diapositives.map((diapo) => (
+              <li key={diapo.src}>
+                {diapo.marque} {diapo.titre} — photo : {diapo.credit}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {Object.keys(stockPhotos).length > 0 ? (
         <section aria-labelledby="credits-photos" className="mt-12">

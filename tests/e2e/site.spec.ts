@@ -147,3 +147,15 @@ test("l'outil « Trouvez votre taille » donne une estimation", async ({ page })
   await page.getByRole("button", { name: "Estimer ma taille" }).click();
   await expect(page.getByText(/doit être plus grand/)).toBeVisible();
 });
+
+test("carrousel d'accueil : navigation et pause", async ({ page }) => {
+  await page.goto("/");
+  const carrousel = page.getByRole("group", { name: "Sélection du moment" });
+  await expect(carrousel).toBeVisible();
+  await expect(carrousel.getByRole("img").first()).toHaveAttribute("alt", /PrimaDonna Jokko/);
+  await page.getByRole("button", { name: "Photo suivante" }).click();
+  await expect(page.getByRole("button", { name: /Photo 2 :/ })).toHaveAttribute("aria-current", "true");
+  const pause = page.getByRole("button", { name: /Pause/ });
+  await pause.click();
+  await expect(page.getByRole("button", { name: /Lecture/ })).toHaveAttribute("aria-pressed", "true");
+});
