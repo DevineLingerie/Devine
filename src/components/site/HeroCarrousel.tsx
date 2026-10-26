@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { Projecteur } from "@/components/motion/Projecteur";
 import type { Diapositive } from "@/content/carrousel";
 
 const DUREE_MS = 6500;
@@ -59,7 +60,10 @@ export function HeroCarrousel({ diapositives, children }: HeroCarrouselProps) {
   return (
     <section className="on-dark relative isolate grid min-h-[100svh] overflow-hidden bg-nuit text-lin lg:grid-cols-[1fr_1fr]">
       {/* Panneau de texte */}
-      <div className="dentelle relative order-2 flex flex-col justify-center px-5 pb-16 pt-10 sm:px-10 lg:order-1 lg:px-14 lg:pb-20 lg:pt-28 xl:px-20">
+      <div className="dentelle relative isolate order-2 flex flex-col justify-center overflow-hidden px-5 pb-16 pt-10 sm:px-10 lg:order-1 lg:px-14 lg:pb-20 lg:pt-28 xl:px-20">
+        {/* Halo de lumière qui suit le pointeur (dérive seul sur mobile) */}
+        <Projecteur />
+        <div className="relative">
         {children}
 
         {total > 1 ? (
@@ -123,6 +127,7 @@ export function HeroCarrousel({ diapositives, children }: HeroCarrouselProps) {
             </p>
           </div>
         ) : null}
+        </div>
         <p aria-live="polite" className="sr-only">
           {annonce}
         </p>
