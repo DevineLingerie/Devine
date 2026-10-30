@@ -55,7 +55,7 @@ describe("données initiales", () => {
     const { rows } = await db.query(
       "select (select count(*) from pages where slug <> 'brouillon-test')::int as pages, (select count(*) from categories)::int as categories, (select count(*) from brands)::int as brands, (select count(*) from faqs)::int as faqs",
     );
-    expect(rows[0]).toEqual({ pages: 10, categories: 6, brands: 5, faqs: 6 });
+    expect(rows[0]).toEqual({ pages: 10, categories: 6, brands: 13, faqs: 6 });
   });
 
   it("n'inventent ni adresse, ni téléphone, ni mentions légales", async () => {

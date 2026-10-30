@@ -32,8 +32,16 @@ insert into public.brands (slug, name, description, website_url, sort_order, is_
   ('primadonna', 'PrimaDonna', null, null, 10, true),
   ('lise-charmel', 'Lise Charmel', null, null, 20, true),
   ('antigel', 'Antigel', null, null, 30, true),
-  ('elomi', 'Elomi', null, null, 40, true),
-  ('labonal', 'Labonal', null, null, 50, true)
+  ('labonal', 'Labonal', null, null, 40, true),
+  ('marie-jo', 'Marie Jo', null, null, 50, true),
+  ('triumph', 'Triumph', null, null, 60, true),
+  ('chantelle', 'Chantelle', null, null, 70, true),
+  ('oscalito', 'Oscalito', null, null, 80, true),
+  ('le-chat', 'Le Chat', null, null, 90, true),
+  ('hom', 'HOM', null, null, 100, true),
+  ('impetus', 'Impetus', null, null, 110, true),
+  ('eden-park', 'Eden Park', null, null, 120, true),
+  ('sunflair', 'Sunflair', null, null, 130, true)
 on conflict (slug) do nothing;
 
 insert into public.services (slug, title, summary, sort_order, is_published) values

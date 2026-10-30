@@ -411,8 +411,16 @@ export const defaultBrands: (Seed<Brand> & { isPublished: boolean })[] = [
   { slug: "primadonna", name: "PrimaDonna", description: null, websiteUrl: null, sortOrder: 10, isPublished: true },
   { slug: "lise-charmel", name: "Lise Charmel", description: null, websiteUrl: null, sortOrder: 20, isPublished: true },
   { slug: "antigel", name: "Antigel", description: null, websiteUrl: null, sortOrder: 30, isPublished: true },
-  { slug: "elomi", name: "Elomi", description: null, websiteUrl: null, sortOrder: 40, isPublished: true },
-  { slug: "labonal", name: "Labonal", description: null, websiteUrl: null, sortOrder: 50, isPublished: true },
+  { slug: "labonal", name: "Labonal", description: null, websiteUrl: null, sortOrder: 40, isPublished: true },
+  { slug: "marie-jo", name: "Marie Jo", description: null, websiteUrl: null, sortOrder: 50, isPublished: true },
+  { slug: "triumph", name: "Triumph", description: null, websiteUrl: null, sortOrder: 60, isPublished: true },
+  { slug: "chantelle", name: "Chantelle", description: null, websiteUrl: null, sortOrder: 70, isPublished: true },
+  { slug: "oscalito", name: "Oscalito", description: null, websiteUrl: null, sortOrder: 80, isPublished: true },
+  { slug: "le-chat", name: "Le Chat", description: null, websiteUrl: null, sortOrder: 90, isPublished: true },
+  { slug: "hom", name: "HOM", description: null, websiteUrl: null, sortOrder: 100, isPublished: true },
+  { slug: "impetus", name: "Impetus", description: null, websiteUrl: null, sortOrder: 110, isPublished: true },
+  { slug: "eden-park", name: "Eden Park", description: null, websiteUrl: null, sortOrder: 120, isPublished: true },
+  { slug: "sunflair", name: "Sunflair", description: null, websiteUrl: null, sortOrder: 130, isPublished: true },
 ];
 
 export const defaultServices: (Seed<Service> & { isPublished: boolean })[] = [
